@@ -1,0 +1,1640 @@
+  /*Custom Fonts*/
+  
+  @font-face {
+      font-family: 'BrandonPrinted';
+      src: url(brandonprinted-One.eot), 
+           url(BrandonPrinted-One.otf) format("opentype");
+  }
+
+  @font-face {
+      font-family: 'BrandonBlack';
+      src: url(Brandon-Black.eot),
+           url(Brandon-Black.ttf);
+  }
+  
+  @font-face {
+      font-family: 'ChaletLondon';
+      src: url(ChaletLondon.ttf),
+           url(chaletlondon.eot),
+           url(chaletlondon.woff) format("woff"),
+           url(chaletlondon.woff) format("woff2");
+  }
+  /*Font Colors*/
+  
+  .sl-white {
+      color: #fff !important;
+  }
+  
+  .sl-black {
+      color: #000 !important;
+  }
+  
+  .sl-gold {
+      color: #CFBC89 !important;
+  }
+  
+  .sl-yellow {
+      color: #D7A337 !important;
+  }
+  
+  .sl-light-blue {
+      color: #A0DADF !important;
+  }
+  
+  .sl-mid-blue {
+      color: #0099A9 !important;
+  }
+  
+  .sl-dark-blue {
+      color: #222944 !important;
+  }
+  
+  .sl-light-gray {
+      color: #A7A9AC !important;
+  }
+  
+  .sl-dark-gray {
+      color: #58595B !important;
+  }
+  
+  .sl-green {
+      color: #61A844 !important;
+  }
+  
+  .sl-light-green {
+      color: #AFBD22 !important;
+  }
+  
+  .sl-pink {
+      color: #B1005D !important;
+  }
+  /*Text Position*/
+  
+  .sl-center {
+      text-align: center !important;
+  }
+  
+  .sl-left {
+      text-align: left !important;
+  }
+  
+  .sl-right {
+      text-align: right !important;
+  }
+  
+  .sl-inline {
+      display: inline !important;
+  }
+  /*Font Family*/
+  
+  .sl-brandon {
+      font-family: BrandonPrinted !important;
+  }
+  
+  .sl-brandon-black {
+      font-family: BrandonBlack !important;
+  }
+  
+  .sl-chalet {
+      font-family: ChaletLondon !important;
+  }
+  
+  .sl-underline {
+      text-decoration: underline !important;
+  }
+  
+  .sl-italic {
+      font-style: italic !important;
+  }
+  /*Font size*/
+  
+  .sl-xxsmall {
+      font-size: 12px;
+  }
+  
+  .sl-xsmall {
+      font-size: 15px;
+  }
+  
+  .sl-small {
+      font-size: 20px;
+  }
+  
+  .sl-medium {
+      font-size: 25px;
+  }
+  
+  .sl-large {
+      font-size: 30px;
+  }
+  
+  .sl-xlarge {
+      font-size: 40px;
+  }
+  
+  .sl-xxlarge {
+      font-size: 50px;
+  }
+  
+  .sl-xxxlarge {
+      font-size: 100px;
+  }
+
+  .sl-xxxxlarge {
+      font-size: 115px;
+  }
+  
+  /*Body*/
+  .stellar-wrapper br {
+    /* fix those annoying themes or other plugins that insist on adding wpautop filter to post shortcode content */
+    display: none
+  }
+  input {
+      color: #000 !important;
+  }
+  /*Navigation*/
+  
+  .slnav ul {
+      list-style: none;
+  }
+  
+  .slnav li {
+      display: inline-block;
+      margin-right: 70px;
+  }
+  
+  .slnav a {
+      display: block;
+  }
+  
+  .slnav a.active {
+      border-bottom: solid 5px #CFBC89;
+  }
+  
+  .stl-help {
+      color: #58595B;
+      margin-left: 668px;
+      margin-top: -112px;
+      background: #fff;
+      padding: 1px 9px;
+      border: none;
+      height: 30px;
+      width: 100%;
+      line-height: 0 !important;
+  }
+  
+  .sl-help-icon {
+      color: #fff;
+      background: gray;
+      height: 40px;
+      width: 121px;
+      border-radius: 100%;
+      font-size: 16px;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+  
+  .sl-welcome {
+      display: inline-block;
+      /*max-width: 30%;    */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 87%;
+      text-align: left;
+  }
+  
+  .stl-logout {
+      display: inline-block;
+      color: #58595B;
+      margin-top: 5%;
+      float: right;
+      background: #fff;
+      padding-top: 1px;
+      border: 2px solid #58595B;
+      border-radius: 4px;
+      height: 30px;
+      min-width: 11%;
+      line-height: 0 !important;
+      font-size: 20px;
+  }
+  
+  .stl-logout:hover {
+      background: #0099A9;
+      color: #fff;
+      border: none;
+  }
+  
+  @media screen and (min-width: 600px) {
+      .slnav li {
+          border-bottom: none;
+          height: 50px;
+          line-height: 50px;
+          font-size: 1.4em;
+      }
+  }
+  /*Main Site*/
+  
+  .sl-header {
+      color: #9a1e5b;
+      border-bottom: solid 4px;
+  }
+  
+  .container-main {
+      background-color: #fff;
+  }
+
+  .container-main .bottom-image img {
+      transform: perspective(100px) rotateY(180deg);
+      -ms-transform: perspective(100px) rotateY(180deg);
+      -webkit-transform: perspective(100px) rotateY(180deg);
+  }
+
+  /*Stellar Registration*/
+  
+  #stellar-register-form {
+      margin: 0 auto;
+  }
+  
+  #stellar-register-form input {
+      line-height: 1 !important;
+  }
+
+  #stellar-register-form p, .stellar-register-title {
+      color: #fff;
+  }
+  /*Stellar Login*/
+  
+  .stellar-login {
+      margin-bottom: 30px !important;
+      padding-bottom: 20px !important;
+      margin-left: 1% !important;
+  }
+
+  .stellar-user-box{
+      display: none !important;
+  }
+
+  .stellar-facebook-button {
+      margin-left: -10px !important;
+  }
+  
+  .stellar-login-label {
+      display: none;
+  }
+  
+  .stellar-login-header {
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+  }
+  
+  .login-wrapper {
+      background-color: #222944;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      margin-bottom: 40px;
+  }
+  
+  .stellar-login input {
+      width: 250px;
+      border-radius: 3px;
+      height: 30px;
+  }
+  
+  .stellar-login button {
+      width: 110px;
+      height: 30px;
+      font-family: ChaletLondon;
+      border-radius: 3px;
+  }
+  
+  .stellar-login-button {
+      background-color: #0099A9 !important;
+  }
+  
+  .stellar-signup-button {
+      background-color: #E8A04F !important;
+  }
+  
+  .stellar-signup-button {
+      background-color: #E8A04F !important;
+  }
+  
+  .stellar-forgot-password {
+      margin-left: -65%;
+      padding-top: 15px;
+      display: block;
+      color: #fff;
+  }
+  
+  .stellar-login {
+      padding-top: 25px;
+      text-align: center;
+      margin: 0 auto;
+  }
+
+  .stellar-challenge-wrapper{
+      min-height: 0px !important;
+  }
+  
+  #stellar-register-form button {
+      margin-bottom: 10px;
+  }
+  /* Stellar Profile */
+  
+  .stellar-header-action[data-name="sl-edit"] {
+      width: 63px;
+      margin-right: -19px;
+  }
+  
+  .stellar-header-action[data-name="sl-cancel"] {
+      width: 88px;
+      margin-right: -19px;
+  }
+  
+  .stellar-header-action[data-name="sl-save"] {
+      width: 69px;
+      margin-right: -6px;
+  }
+  
+  .stellar-header-action {
+      text-align: center;
+      height: 36px;
+      background: rgb(255, 255, 255);
+      margin-top: 0 !important;
+      border: 2px solid black;
+      padding-top: 14px;
+  }
+  
+  .stellar-profile .stellar-fieldgroup,
+  .stellar-preferences .stellar-fieldgroup {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      background: #000;
+      margin-bottom: -18px;
+      margin-left: -15px;
+      width: 104%;
+      color: white !important;
+      font-size: 23px;
+      text-transform: uppercase;
+      padding-left: 4px;
+      height: 36px;
+  }
+  
+  .stellar-preferences .stellar-fieldgroup label,
+  .stellar-profile .stellar-fieldgroup label {
+      color: white !important;
+      padding-top: 13px;
+      font-family: BrandonPrinted;
+  }
+  
+  .stellar-preferences .stellar-field,
+  .stellar-profile .stellar-field {
+      margin-left: -12px;
+  }
+  
+  .stellar-profile,
+  .stellar-preferences {
+      width: 80%;
+  }
+  
+  .stellar-profile .stellar-field label,
+  .stellar-profile .stellar-field input,
+  .stellar-profile .stellar-field select {
+      display: block;
+      width: 719px;
+      color: #000;
+  }
+  
+  .stellar-profile .stellar-field input[type="checkbox"] {
+      width: auto !important;
+  }
+  
+  .stellar-profile .stellar-field input {
+      border: 1px solid #e2e2e2;
+      /*width: auto;*/
+  }
+  
+  .stellar-profile .stellar-field select {
+      line-height: 1;
+      height: 43px;
+      border: 1px solid #e2e2e2;
+  }
+  
+  .stellar-profile .stellar-field label {
+      color: #000;
+      font-weight: 500;
+      font-size: 16px;
+  }
+  
+  .stellar-profile .stellar-field label span {
+      color: #9A1E52;
+  }
+  
+  .stellar-profile .stellar-box {
+      background-color: transparent;
+  }
+  
+  .stellar-preferences .stellar-header,
+  .stellar-profile .stellar-header {
+      background-color: transparent;
+      border-bottom: 3px solid #000;
+      color: #000;
+      font-weight: bold;
+  }
+  
+  .stellar-header .stellar-header-action {
+      color: #000;
+  }
+  
+  .stellar-preferences .stellar-header label,
+  .stellar-profile .stellar-header label,
+  .stellar-preferences .stellar-header a,
+  .stellar-profile .stellar-header a {
+      color: #000;
+      padding-top: 7px;
+      padding-left: 6px;
+  }
+  
+  .stellar-spinner {
+      background: #000;
+      color: #fff !important;
+  }
+  
+  .stellar-profile
+  /* Stellar Preferences */
+  
+  .stellar-preferences .stellar-field input[type="radio"] {
+      margin-right: 10px;
+  }
+  
+  .stellar-preferences .stellar-box {
+      background-color: transparent;
+  }
+  
+  .stellar-preferences .stellar-add-preferences {
+      border-top: 1px solid #000;
+      margin-top: 10px;
+      padding-top: 10px;
+  }
+  /* Stellar Preferences Challenge */
+  
+  .stellar-update-profile-challenge .stellar-input-group {
+      color: #9a1e5b;
+      font-weight: 500;
+      font-size: 16px !important;
+  }
+  
+  .stellar-update-profile-challenge option {
+      color: #9a1e5b;
+      font-weight: 500;
+      font-size: 16px !important;
+  }
+  
+  .stellar-update-profile-challenge input[type="checkbox"],
+  .stellar-update-profile-challenge input[type="radio"] {
+      margin-right: 10px;
+  }
+  
+  .stellar-update-profile-challenge .stellar-box {
+      background-color: transparent;
+  }
+  
+  .stellar-update-profile-challenge .stellar-form-group {
+      background-color: transparent;
+      border-bottom: 3px solid #000;
+      color: #000;
+      font-weight: bold;
+  }
+  
+  .stellar-update-profile-challenge .stellar-form-group a {
+      color: #000;
+  }
+  
+  .stellar-update-profile-challenge select {
+      color: #9a1e5b !important;
+      font-size: 13px !important;
+      height: 30px;
+  }
+  
+  .stellar-update-profile-challenge input {
+      color: #000
+  }
+  
+  .purple-text {
+      color: #9a1e5b
+  }
+  /*Activities*/
+  
+  .stellar-activities {
+      margin-left: 40px;
+      width: 80%;
+  }
+  
+  .activities-wrapper {
+      max-height: 800px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll: hidden;
+  }
+  
+  .black-circle {
+      background: black;
+      border-radius: 100%;
+      height: 50px;
+      width: 50px;
+      display: inline-block;
+      font-size: 19px;
+      padding-top: 13px;
+      text-align: center;
+  }
+  
+  .sl-activity {
+      padding: 15px 15px;
+      border-bottom: 1px solid #f3f3f3;
+  }
+  
+  /*.profile-header {
+      padding-top: 60px;
+  }*/
+  /*COUPONS*/
+  
+  .coupons-container .tabs li {
+      list-style: none;
+      display: inline;
+  }
+  
+  .coupons-container ul {
+      text-align: center;
+  }
+  
+  .coupons-container .tabs a {
+      font-size: 20px;
+      border-radius: 3px;
+      padding: 0 10px;
+      border: solid 2px #58595B;
+      margin-right: -8px;
+      display: inline-block;
+      background: #fff;
+      color: #58595B;
+      text-decoration: none;
+  }
+  
+  .coupons-container .tabs a.active {
+      background: #58595B;
+      color: #fff;
+  }
+  
+  .coupon-item {
+      display: flex !important;
+      align-items: center !important;
+  }
+  
+  .sl-clipbtn {
+      height: 50px;
+      width: 50px;
+  }
+  
+  .circles-container {
+      border-right: 3px dotted #A7A9AC;
+  }
+  
+  .coupons-label,
+  .circles-label,
+  .sl-circles-text {
+      margin-left: 0;
+      text-align: center;
+  }
+  
+  .sl-circles-text {
+      padding-bottom: 5px;
+  }
+  
+  .punchcards-wrapper,
+  .coupons-wrapper-scroll {
+      max-height: 700px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+  }
+
+   .expiration-circle{
+          text-align: center;background-color: #A0DADF; border-radius: 100%;height: 35px;width: 35px;display: inline-block;padding-top: 8px;font-size: 27px;color: #000;font-family: BrandonPrinted;
+      }
+      .expiration-text{
+          font-family: ChaletLondon;font-style: italic;font-size: 22px;
+      }
+  
+  .coupons-wrapper {
+      margin-right: 12px;
+  }
+  
+  
+  .coupon-item {
+      border-top: 2px solid #A7A9AC;
+      margin-top: 15px;
+      line-height: .9;
+  }
+  
+  .coupon-image,
+  .coupon-content {
+      padding-top: 15px;
+  }
+  
+  .item-description {
+      font-size: 22px;
+      font-weight: bolder;
+  }
+  
+  .item-expiration {
+      font-style: italic;
+  }
+  
+  .coupon-item button {
+      background-color: transparent;
+      border: none;
+  }
+  
+  .sl-empty-activated,
+  .sl-empty-clipped {
+      margin-left: 40%;
+  }
+
+
+/*Circle ProgressBar*/
+.circle {
+  width: 100px;
+  margin: 25px 6px 20px;
+  display: block;
+  position: relative;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.circle canvas {
+  vertical-align: top;
+}
+
+.circle strong {
+  position: absolute;
+  top: 105px;
+  left: 85px;
+  width: 100%;
+  text-align: center;
+  line-height: 70px;
+  font-size: 30px;
+  color: #fff;
+}
+
+.circle strong i {
+  font-style: normal;
+  font-size: 0.6em;
+  font-weight: normal;
+}
+
+.circle span {
+  display: block;
+  color: #aaa;
+  margin-top: 12px;
+}
+
+
+
+  /*Percircle
+  
+  .percircle.red .bar,
+  .percircle.red .fill {
+      border-color: #A0DADF;
+  }
+  
+  .percircle.gt50 .slice,
+  .rect-auto {
+      clip: rect(auto, auto, auto, auto)
+  }
+  
+  .gt50 .fill,
+  .percircle .bar,
+  .pie {
+      position: absolute;
+      border: .08em solid #307bbb;
+      width: .84em;
+      height: .84em;
+      clip: rect(0, .5em, 1em, 0);
+      border-radius: 50%;
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg)
+  }
+  
+  .bar {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden
+  }
+  
+  .gt50 .bar:after,
+  .gt50 .fill,
+  .pie-fill {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg)
+  }
+  
+  .percircle {
+      position: relative;
+      font-size: 120px;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      float: left;
+      margin: 30px .1em .1em 0;
+      background-color: #fff
+  }
+  
+  .percircle *,
+  .percircle :after,
+  .percircle :before {
+      box-sizing: content-box
+  }
+  
+  .percircle.animate:after,
+  .percircle.animate>span {
+      -webkit-transition: -webkit-transform .2s ease-in-out;
+      transition: transform .2s ease-in-out
+  }
+  
+  .percircle.animate .bar {
+      -webkit-transition: -webkit-transform .6s ease-in-out;
+      transition: transform .6s ease-in-out
+  }
+  
+  .percircle.center {
+      float: none;
+      margin: 0 auto
+  }
+  
+  .percircle.big {
+      font-size: 340px
+  }
+  
+  .percircle.small {
+      font-size: 80px
+  }
+  
+  .percircle>span {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      top: 30%;
+      height: 1em;
+      margin-top: -.5em;
+      font-size: .2em;
+      color: #fff;
+      display: block;
+      text-align: center;
+      white-space: nowrap
+  }
+  
+  .perclock>span {
+      font-size: .175em
+  }
+  
+  .percircle:after {
+      position: absolute;
+      top: .08em;
+      left: .08em;
+      display: block;
+      content: " ";
+      border-radius: 50%;
+      background-color: #000;
+      width: .84em;
+      height: .84em
+  }
+  
+  .percircle .slice {
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      clip: rect(0, 1em, 1em, .5em)
+  }
+  
+  .percircle .pts-label {
+      display: block;
+  }*/
+  /*Progress bar*/
+  
+  .progress-bar-wrapper {
+      /*margin-top: 50px;*/
+      width: 100%;
+      height: 400px;
+      background: #000;
+  }
+  
+  .rewards-count-circle {
+      text-align: center;
+      background-color: #0099A9;
+      border-radius: 100%;
+      height: 50px;
+      width: 50px;
+      display: inline-block;
+      padding-top: 3px;
+      font-size: 36px;
+  }
+  
+  .rewards-count-circle-title {
+      padding-top: 8px !important;
+  }
+  
+  .rewards-count-circle-main {
+      background-color: #A0DADF !important;
+      padding-top: 9px;
+  }
+  /*My Rewards Popup*/
+  
+  .my-rewards {
+      border-radius: 20px;
+      border: solid 20px #222944;
+  }
+  
+  .my-rewards .stellar-dialog-heading {
+      background-color: white !important;
+      color: #0099A9 !important;
+      font-family: BrandonPrinted !important;
+      text-align: center;
+      font-size: 40px;
+  }
+  
+  .my-rewards .stellar-btn-close {
+      color: #000 !important;
+  }
+  
+  .my-rewards .row {
+      border-bottom: solid 2px #A7A9AC !important;
+      padding: 15px 15px;
+      margin: 0 20px 0 20px;
+  }
+
+  .my-rewards-expiration{
+      padding-top: 10px;
+      font-size: 11px;
+  }
+  
+  .my-rewards .reward-info {
+      border-bottom: solid 2px #A7A9AC;
+      padding-bottom: 50px;
+      font-size: 47px;
+  }
+
+  .my-rewards-body{
+      padding-top: 7px;
+  }
+  /* Rewards Circle (Punchards) */
+  
+  .stellar-punchcards .punchcard-items {
+      border-top: 2px solid #A7A9AC;
+  }
+  
+  .stellar-punchcards .punchcard-required,
+  .stellar-punchcards .punchcard-content {
+      padding: 20px;
+  }
+  
+  .stellar-punchcards .punchcard-required {
+      text-align: center;
+  }
+  
+  .stellar-punchcards .punchcard-required>span {
+      font-size: 22px;
+      text-align: center;
+      width: 100%;
+      line-height: 3;
+  }
+  
+  .stellar-punchcards .punchcard-content .item-description {
+      padding-top: 20px;
+      margin: 0;
+      font-size: 25px;
+      color: #222944;
+      margin-bottom: 10px;
+  }
+  
+  .sl-circles-info {
+      margin-bottom: 23px;
+  }
+  /*Rewards Circle*/
+  
+  .stellar-punchcards .item-description {
+      font-family: ChaletLondon;
+      color: #222944;
+      font-weight: bolder;
+  }
+  
+  .stellar-dialog-offers {
+      border-radius: 11px;
+      text-align: center;
+  }
+  
+  .stellar-dialog-offers .mfp-close {
+      color: #000 !important;
+  }
+  
+  .stellar-dialog-offers .stellar-dialog-heading {
+      background-color: #fff !important;
+  }
+  
+  .stellar-dialog-offers .stellar-dialog-body {
+      line-height: 1;
+  }
+  
+  .stellar-dialog-offers .stellar-heading {
+      font-family: BrandonPrinted !important;
+      color: #0099A9;
+      background-color: #fff;
+      border: none;
+      text-align: center !important;
+  }
+  
+  .stellar-dialog-offers .stl_heading {
+      font-family: ChaletLondon;
+      font-size: 22px;
+      color: #222944;
+  }
+  
+  .stellar-dialog-offers .stl_subheading {
+      font-size: 22px;
+      font-family: ChaletLondon;
+      color: #58595B;
+  }
+  
+  .stellar-dialog-offers .stl_body {
+      font-family: BrandonPrinted;
+      color: #0099A9;
+      font-size: 22px;
+  }
+  
+  .stellar-dialog-offers .stl_details {
+      font-family: ChaletLondon;
+      color: #58595B;
+  }
+
+  /*Successful Dialog*/
+  
+  .white-popup>.update-profile-success {
+      display: block;
+      float: left;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px;
+      position: relative;
+  }
+  
+  .white-popup>.stellar-dialog-content {
+      display: block;
+      width: 100%;
+      position: absolute;
+      margin: 0;
+      padding-left: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      background-color: #012391;
+      color: #fff;
+      left: 0px;
+      top: 0px;
+  }
+  
+  .stellar-dialog-content p {
+      text-align: center;
+      font-family: ChaletLondon;
+      padding-top: 20px;
+      font-size: 20px;
+  }
+
+  .stellar-alert-challenge-success p{
+    padding: 25px 0px 20px 19px;
+}
+  
+  /* Forgot Password Page */
+  #forgot-password-form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  #forgot-password-form .error-message {
+    text-align: center;
+    color: #fff;
+  }
+
+  #forgot-password-form .success-message {
+    text-align: center;
+    color: #fff;
+  }
+
+  #forgot-password-form .form-group {
+    display: block;
+    position: relative;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    height: 35px;
+    max-height: 50px;
+  }
+
+  #forgot-password-form .form-group input {
+    display: block;
+    float: left;
+    width: 58%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+  }
+
+  #forgot-password-form .form-group button {
+    display: block;
+    position: relative;
+    float: left;
+    height: 30px;
+    font-family: ChaletLondon;
+  }
+
+  #forgot-password-form .form-group button span {
+    font-family: ChaletLondon;
+    text-transform: uppercase;
+  }
+
+  .btn-primary {
+    background: #0099A9 !important;
+    border-color: transparent;
+    height: 40px;
+  }
+
+  /* Reset Password Page */
+  #reset-password-form {
+    padding: 20px 0 20px 0;
+  }
+
+  #reset-password-form .error-message {
+    background-color: crimson;
+    text-align: center;
+    color: #fff;
+    width: 95%;
+    padding: 10px;
+    margin: 0 auto 10px auto;
+    border-radius: 5px;
+  }
+
+  #reset-password-form .form-group {
+    display: block;
+    position: relative;
+    width: 880px;
+    margin: 0 auto 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    height: 35px;
+    max-height: 50px;
+    padding-left: 1%;
+    clear: both;
+  }
+
+  #reset-password-form .form-group input {
+    display: block;
+    float: left;
+    width: 35%;
+    height: 30px;
+    border-radius: 5px;
+    text-align: left;
+  }
+
+  #reset-password-form .form-group button {
+    display: block;
+    position: relative;
+    font-family: ChaletLondon;
+    text-transform: uppercase;
+    width: 27%;
+    height: 30px;
+  }
+
+  #reset-password-form .success-message p {
+    text-align: center;
+    color: #fff;
+  }
+
+  /*Program page*/
+  
+  .program-container {
+      width: 100%;
+      height: 1200px;
+      margin-top: 30px;
+  }
+  
+  .white-popup .mfp-close {
+      color: #FFF;
+      background-color: rgba(255, 255, 255, 0.2) !important;
+      top: -4px;
+  }
+  
+  .white-popup .stellar-dialog-heading {
+      background-color: #b00c5e;
+      color: #FFF;
+  }
+  
+  .white-popup .stellar-heading,
+  .white-popup .stellar-dialog-heading h1,.white-popup .stellar-dialog-heading h2{
+      font-size: 24px;
+      /* margin: 0.67em 0;*/
+      margin: 0;
+      font-family: BrandonPrinted;
+  }
+  
+  .white-popup .stellar-dialog-body {
+      text-align: center;
+  }
+  
+  .white-popup.success .stellar-dialog-body {
+      min-height: 100px;
+      text-align: center;
+  }
+  
+  .white-popup.challenge-respond .stellar-btn-container {
+      text-align: right;
+  }
+  
+  .white-popup .stellar-btn {
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: normal;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      border-radius: 4px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+  
+  .white-popup.update-profile-success .stellar-btn-ok {
+      background-color: #FD9126 !important;
+  }
+  
+  .white-popup .stellar-btn-container {
+      margin-top: 20px;
+  }
+  
+  .white-popup.update-profile-success .stellar-response-content p {
+      text-align: center;
+  }
+  
+  .white-popup.update-profile-success .stellar-response-content {
+      background-color: #FFF;
+  }
+  
+  .white-popup.update-profile-success .stellar-response-content-wrap {
+      background-color: #000;
+      text-align: center;
+      color: #FFF;
+  }
+  
+  .white-popup.update-profile-success .stellar-response-content-wrap .stellar-btn-container {
+      text-align: center !important;
+  }
+  
+  .white-popup .stellar-heading,
+  .white-popup .stellar-dialog-heading h1 {
+      text-align: left;
+  }
+
+  .stellar-update-profile-challenge .stellar-form-group{
+    text-align: center;
+    background-color: #b00c5e;
+    color: #FFF;
+    height: 50px;
+    border: none;
+    padding-top: 9px;
+  }
+  .stellar-update-profile-challenge label{
+    font-family: BrandonPrinted;
+    text-align: center;
+    color: #fff;
+    font-size: 27px;
+  }
+
+  .stellar-wizard .stellar-btn{
+      width: auto !important;
+      margin-left: 42% !important;
+      margin-top: 9.2% !important;
+  }
+
+  .stellar-update-profile-challenge select {
+    color: #000 !important;
+    font-size: 13px !important;
+    height: 30px;
+    width: 48%;
+    margin-bottom: -59px;
+    margin-right: -3%;
+}
+  /*Responsiveness*/
+  /*ipad*/
+  
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+      .rewards-details-wrapper {
+          padding-left: 17%;
+          margin-top: -35px;
+      }
+      .sl-welcome {
+          font-size: 25px;
+          padding-top: 0;
+          margin-left: -3%;
+          text-align: left;
+          max-width: 80%;
+          width: 80%;
+      }
+      .stl-logout {
+          height: 24px;
+          width: 16%;
+          font-size: 11px;
+          /*margin-left: 22%;*/
+          margin-top: 7%;
+      }
+      .stl-help {
+          margin-left: 409%;
+          margin-top: -12px;
+      }
+      .slnav li {
+          margin-right: 33px;
+      }
+      .progress-bar-wrapper {
+          margin-top: 16px !important;
+          margin-left: 0px;
+      }
+      .activity-details {
+          padding-left: 30px;
+      }
+      .coupons-label,
+      .circles-label,
+      .sl-circles-text {
+          margin-left: 0;
+          text-align: center;
+      }
+      .sl-clipbtn {
+          height: 70px;
+          width: 70px;
+      }
+      .circles-container {
+          padding-right: 0;
+      }
+      .sl-rewards-points-label {
+          font-size: 36px;
+      }
+      .sl-empty-activated,
+      .sl-empty-clipped {
+          margin-left: 42%;
+      }
+      .punchcards-wrapper {
+          padding-left: 67px;
+          margin-right: 10px;
+      }
+      .stellar-login input {
+          width: 225px;
+      }
+      .stellar-forgot-password {
+          margin-left: -566px;
+          padding-top: 0;
+      }
+  }
+  /*iPhone 6+*/
+  
+  @media (min-device-width: 414px) and (max-device-width: 768px) {
+      .stellar-login input {
+          display: block;
+          width: 78%;
+          border-radius: 3px;
+          height: 30px;
+          margin-left: 11%;
+          margin-bottom: 6px;
+      }
+      .stellar-login button {
+          width: 38%;
+          margin-right: -13px;
+          margin-left: 4%;
+      }
+      #stellar-register-form {
+          margin-left: 9%;
+      }
+      #stellar-register-form input {
+          color: #000;
+      }
+      .stellar-forgot-password {
+          margin-left: 0;
+      }
+      .slnav a {
+          font-size: 20px;
+      }
+      .slnav li {
+          margin-right: 10px;
+      }
+      .slnav {
+          text-align: left;
+      }
+      .stellar-login-header {
+          font-size: 40px;
+      }
+      .sl-welcome {
+          font-size: 25px;
+          padding-top: 0;
+          margin-left: -3%;
+          text-align: left;
+          max-width: 80%;
+          width: 80%;
+      }
+      .stl-logout {
+          height: 24px;
+          width: 16%;
+          font-size: 11px;
+          /*margin-left: 22%;*/
+          margin-top: 13%;
+      }
+      .stl-help {
+          margin-left: 28%;
+          margin-top: -12px;
+      }
+      .progress-bar-wrapper {
+          margin-left: 0;
+          margin-top: 9%;
+          height: 500px;
+          padding-left: 2%;
+      }
+      .coupons-label,
+      .circles-label {
+          font-size: 2.4em
+      }
+      .coupons-label {
+          margin-left: 0;
+          margin-top: 13%;
+      }
+      .circles-container {
+          padding-right: 0;
+          border: none;
+      }
+      .coupon-item {
+          margin-top: 0;
+          margin-left: 0;
+      }
+      .coupon-image {
+    padding: 15px;
+}
+      .sl-empty-activated,
+      .sl-empty-clipped {
+          margin-left: 5%;
+      }
+      .item-description,
+      .sl-medium {
+          font-size: 17px;
+      }
+      .coupon-content {
+          text-align: left;
+      }
+      .reward-body,
+      .rewards-information {
+          font-size: 15px;
+      }
+      .sl-circles-text {
+          /*padding-bottom: 39px;*/
+          font-size: 16px;
+      }
+      .punchcards-wrapper,
+      .coupons-wrapper-scroll {
+          max-height: 100%;
+      }
+      .coupons-container ul {
+          /*margin-bottom: 10%;*/
+      }
+      .profile-header {
+          padding-top: 20px;
+          font-size: 2.4em;
+      }
+      .stellar-field input[type="text"],
+      .stellar-field select {
+          width: 100% !important;
+      }
+      .activities-wrapper {
+          max-height: 100%;
+      }
+      .activity-details {
+          font-size: 1em;
+          padding-left: 3%;
+      }
+      .black-circle {
+          height: 35px;
+          width: 35px;
+          font-size: 1em;
+          padding-top: 34%;
+      }
+      .activity-date {
+          font-size: .8em;
+      }
+      .sl-clipbtn {
+          padding-right: 10px;
+      }
+      .punchcard-content {
+          text-align: left;
+      }
+      .punchcard-items {
+          display: flex;
+          align-items: center;
+      }
+      .stellar-profile .stellar-fieldgroup,
+      .stellar-preferences .stellar-fieldgroup {
+          font-size: 11px;
+          padding-top: 3px;
+      }
+       .circle canvas{
+          width: 330px !important;
+          height: 330px !important;
+      }
+
+      .circle strong {
+  top: 90px;
+  left: 82px;
+      }
+  .rewards-details-wrapper{
+      margin-top: 75%;
+}
+  }
+  /*iPhone 6*/
+  
+  @media (min-device-width: 375px) and (max-device-width: 400px) {
+      .stellar-login-header {
+          font-size: 35px;
+      }
+      .stellar-login input {
+          display: block;
+          margin-left: 12%;
+          margin-bottom: 6px;
+          width: 268px;
+      }
+      .stellar-login button {
+          width: 38%;
+          margin-right: -5%;
+          margin-left: 6%;
+      }
+      .stellar-forgot-password {
+          margin-left: 0;
+      }
+      #stellar-register-form {
+          margin-left: 3%;
+      }
+      #stellar-register-form input {
+          color: #000;
+      }
+      .stellar-preferences .stellar-header label,
+      .stellar-profile .stellar-header label,
+      .stellar-preferences .stellar-header a,
+      .stellar-profile .stellar-header a {
+          padding-top: 8px;
+          padding-left: 6px;
+          font-size: 11px;
+      }
+      .sl-welcome {
+          font-size: 25px;
+          padding-top: 0;
+          margin-left: -3%;
+          text-align: left;
+          max-width: 80%;
+          width: 80%;
+      }
+      .slnav a {
+          font-size: 17px;
+      }
+      .slnav li {
+          margin-right: 10px;
+      }
+      .slnav {
+          text-align: left;
+      }
+      .percircle.big {
+          font-size: 302px;
+      }
+      .percircle .pts-label {
+          font-size: 40px;
+      }
+      .stl-logout {
+          height: 24px;
+          width: 16%;
+          font-size: 11px;
+          margin-top: 15%;
+      }
+      .stl-help {
+          margin-left: 35%;
+          margin-top: -7px;
+          ;
+      }
+      .progress-bar-wrapper {
+          margin-left: 0;
+          margin-top: 9%;
+          height: 500px;
+          padding-left: 2%;
+      }
+      .coupons-label,
+      .circles-label {
+          font-size: 2.3em
+      }
+      .coupons-label {
+          margin-left: 0;
+          margin-top: 13%;
+      }
+      .circles-container {
+          padding-right: 0;
+          border: none;
+      }
+      .coupon-item {
+          margin-top: 0;
+          margin-left: 0;
+      }
+      .coupon-image {
+          padding: 15px;
+}
+      .item-description {
+          font-size: 11px;
+      }
+      .coupon-content {
+          text-align: left;
+      }
+      .sl-empty-activated,
+      .sl-empty-clipped {
+          margin-left: 5%;
+      }
+      .reward-body,
+      .rewards-information {
+          font-size: 15px;
+      }
+      .sl-circles-text {
+          /*padding-bottom: 39px;*/
+          font-size: 16px;
+      }
+      .punchcards-wrapper,
+      .coupons-wrapper-scroll {
+          max-height: 100%;
+      }
+      .coupons-container ul {
+          /*margin-bottom: 10%;*/
+      }
+      .profile-header {
+          padding-top: 20px;
+          font-size: 2.4em;
+      }
+      .stellar-field input[type="text"],
+      .stellar-field select {
+          width: 100% !important;
+      }
+      .activities-wrapper {
+          max-height: 100%;
+      }
+      .activity-details {
+          font-size: 1em;
+          padding-left: 3%;
+      }
+      .black-circle {
+          height: 35px;
+          width: 35px;
+          font-size: 1em;
+          padding-top: 34%;
+      }
+      .activity-date {
+          font-size: .8em;
+      }
+      .sl-clipbtn {
+          padding-right: 10px;
+      }
+      .punchcard-content {
+          text-align: left;
+      }
+      .punchcard-items {
+          display: flex;
+          align-items: center;
+      }
+      .sl-medium {
+          font-size: 17px;
+      }
+
+      .circle canvas{
+          width: 300px !important;
+          height: 300px !important;
+      }
+
+      .circle strong {
+  top: 90px;
+  left: 65px;
+      }
+  .rewards-details-wrapper{
+      margin-top: 75%;
+}
+  }

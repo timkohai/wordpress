@@ -1,0 +1,3 @@
+<!--  --><span><strong>Latest release notes: </strong>This is a regular release that introduces a new feature in the shortcode visual editor after user requests. When editing <strong>additional user fields</strong>, users are able to </span><span style="text-decoration: underline;">change the order</span><span> of the fields by moving them up or down. Some additional improvements are included in the Professional version of the plugin.</span><!--  --><!--  --><br /><br /><span>
+
+For more details about this version's changes please visit the Release Notes of the plugin's </span><a href="http://www.iptanus.com/wordpress-plugins/wordpress-file-upload/">support page</a><span>.</span>
