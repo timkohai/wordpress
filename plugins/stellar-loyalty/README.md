@@ -27,7 +27,7 @@ There are many formats that shortcodes can follow, but ultimately the idea is th
 
 
 ## Usage
-This package comes with everything you need to get started in defining your own custom shortcodes and their respective callbacks.
+This package comes with everything you need to get started in defining your own shortcodes and their respective callbacks.
 
 **Stellar Element Shortcodes**
 ```

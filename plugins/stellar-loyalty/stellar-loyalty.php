@@ -6,7 +6,7 @@
 /*
 Plugin Name: Stellar Loyalty
 Plugin URI: https://wordpress.org/plugins/stellar-loyalty
-Description: Stellar Loyalty Elements
+Description: Stellar Loyalty Shortcode Elements for Wordpress
 Author: Stellar
 Version: 1.0.0
 Author URI: http://stellarloyalty.com
