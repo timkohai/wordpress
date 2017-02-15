@@ -4,7 +4,7 @@
  * @version 1.0.0
  */
 /*
-Plugin Name: Stellar Loyalty
+Plugin Name: Stellar Elements Shortcodes
 Plugin URI: https://wordpress.org/plugins/stellar-loyalty
 Description: Stellar Loyalty Shortcode Elements for Wordpress
 Author: Stellar
@@ -19,30 +19,30 @@ define( 'STELLAR__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 require_once( STELLAR__PLUGIN_DIR . 'admin/stellar-admin-config.php' );
 
 // Stellar Elements Shortcodes
-require_once( STELLAR__PLUGIN_DIR . 'stellar-elements/shortcodes.php' );
+require_once( STELLAR__PLUGIN_DIR . 'stellar-elements/stellar-shortcodes.php' );
 
 $stellar_loyalty_settings = get_option( 'stellar_settings' );
-$stellar_init_js = $stellar_loyalty_settings['stellar_init_path'];
-// $stellar_init_js = plugins_url( 'stellar-init.js', __FILE__ );
+// $stellar_init_js = $stellar_loyalty_settings['stellar_init_path'];
+$stellar_init_js = plugins_url( 'stellar-init.js', __FILE__ );
 
-
+ 
 // wordpress register function for styles and scripts
-wp_register_style( 'get-stellar-loyalty-style', plugins_url( '/css/stellar-loyalty.css', __FILE__ ), array(), '20173101', 'all' );
-wp_register_style( 'get-stellar-circle-style', plugins_url( '/css/circle.css', __FILE__ ), array(), '20173101', 'all' );
+wp_register_style( 'get-stellar-loyalty-style', plugins_url( '/css/stellar-loyalty.css', __FILE__ ), array(), '1.0.2', 'all' );
+wp_register_style( 'get-stellar-circle-style', plugins_url( '/css/circle.css', __FILE__ ), array(), '1.0.2', 'all' );
 
-wp_register_script( 'get-stellar-jquery', plugins_url( 'js/jquery.min.js', __FILE__ ), array(), '1.0.0', all );
-wp_register_script( 'get-stellar-js', plugins_url( 'js/stellar-loyalty.js', __FILE__ ), array(), '1.0.0', all );
-wp_register_script( 'get-stellar-circle', plugins_url( 'js/circle.js', __FILE__ ), array(), '1.0.0', all );
+// wp_register_script( 'get-stellar-jquery', plugins_url( 'js/jquery.min.js', __FILE__ ), array(), '1.0.2', true );
+wp_register_script( 'get-stellar-js', plugins_url( 'js/stellar-loyalty.js', __FILE__ ), array(), '1.0.2', true );
+wp_register_script( 'get-stellar-circle', plugins_url( 'js/circle.js', __FILE__ ), array(), '1.0.2', true );
 
 // Stellar Init
-wp_register_script( 'get-stellar-init', $stellar_init_js , array(), '1.0.0', all );
+wp_register_script( 'get-stellar-init', $stellar_init_js , array(), '1.0.2', true );
 
 // Enqueue stellar styles and scripts 
 function load_stellar_assets() {
 	wp_enqueue_style( 'get-stellar-loyalty-style' );
 	wp_enqueue_style( 'get-stellar-circle-style' );
 
-	wp_enqueue_script( 'get-stellar-jquery' );
+	// wp_enqueue_script( 'get-stellar-jquery' );
 	wp_enqueue_script( 'get-stellar-js' );
 	wp_enqueue_script( 'get-stellar-circle' );
 
@@ -59,22 +59,22 @@ function check_stellar_loyalty_shortcodes() {
 	global $post;
 
 	$shortcodes_to_find = array(
-		'stellar-login',
-		'stellar-challenges',
-		'stellar-profile',
-		'stellar-preferences',
-		'stellar-activities',
-		'stellar-offers',
-		'stellar-offers-responses',
-		'stellar-punchcards'
+		'stellar_login',
+		'stellar_challenges',
+		'stellar_profile',
+		'stellar_preferences',
+		'stellar_activities',
+		'stellar_offers',
+		'stellar_offers_responses',
+		'stellar_punchcards'
 	);
 
 	foreach ($shortcodes_to_find as $shortcode) {
-		if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $shortcode) ) {
+		$new_shortcode = str_replace('_', '-', $shortcode);
+		if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $new_shortcode) ) {
 			
 			// Stellar init
 			wp_enqueue_script( 'get-stellar-init' );
-
 			wp_localize_script('get-stellar-init', 'wordpress_settings', array(
 					'settings' => get_option( 'stellar_settings' )
 				)
@@ -104,7 +104,7 @@ function stellar_shortcode_attributes($page, $attr) {
 function rewards_signup_page($attr, $content) {
 	load_stellar_assets();
 	$attr = stellar_shortcode_attributes('signup', $attr);
-    
+	$content = preg_replace('/<br class="nc".\/>/', '', $content);
 	return '<div class="stellar-wrapper stellar-signup-page">
         <div class="top-image">
             <img src="' . $attr['path'] . $attr['top-image-src'] .'" alt="">
@@ -122,10 +122,50 @@ function rewards_signup_page($attr, $content) {
 add_shortcode('rewards-signup-page', 'rewards_signup_page');
 
 
+function stellar_login($attr, $content) {
+	$atts = shortcode_atts( array (
+			'forgot_password_url' => ''
+		), $attr);
+
+	return '<div class="stellar-login col-lg-12" data-forgot-password-url="'.$atts['forgot_password_url'].'" style="display: none;">
+        <form id="stellar-register-form">
+            <div class="notifications">
+                <div class="stellar-signup-notification"></div>
+            </div>
+            <div>
+                <input class="form-field" type="text" name="first_name" title="First Name" sl-message-required="Please enter First Name!" sl-validation="required" placeholder="First Name" />
+            </div>
+            <div>
+                <input class="form-field" type="text" name="last_name" title="Last Name" sl-message-required="Please enter Last Name!"sl-validation="required" placeholder="Last Name"/>
+            </div>
+            <div>
+                <input class="form-field" type="text" name="email" title="Email"sl-message-required="Please enter Email!"sl-message-email="Please enter valid Email!"sl-validation="required,email" placeholder="Email"/>
+            </div> 
+            <div>
+                <input type="text" name="mobile_phone" class="form-field mobile_phone" title="Phone Number" sl-message-required="Please enter Phone Number!" sl-validation="required" placeholder="Phone Number">
+            </div> 
+            <div>
+                <input class="form-field" type="password" name="password" title="Password" sl-message-required="Please enter Password!"sl-validation="required" placeholder="Password"/>
+            </div>
+            <div>
+                <input class="form-field" type="password" name="password_confirmation"title="Confirm Password"sl-message-required="Please enter Confirm Password!"sl-message-equalTo="Confirm Password doesn\'t match Password."sl-validation="required,equalTo[password]" placeholder="Confirm Password"/>
+            </div>
+            <button class="stellar-register-button">SIGN UP</button>
+            <p>Already Have an account?</p>
+            <button class="stellar-signin-button">SIGN IN</button>
+        </form>
+    </div>';
+}
+add_shortcode('stellar-login', 'stellar_login');
+
+
 // Home Page
 function rewards_homepage($attr, $content) {
 	load_stellar_assets();
-	return '<div class="stellar-wrapper stellar-home-page stellar-connected">'. do_shortcode($content) .' </div>';
+	return '<div class="stellar-wrapper stellar-home-page stellar-connected">
+	<div class="stellar-challenges" data-layout="medium_rectangle" data-category="alert" data-widget="alert" data-respondable="yes"></div>
+		'. do_shortcode($content) .' 
+	</div>';
 }
 add_shortcode('rewards-home-page', 'rewards_homepage');
 
@@ -190,7 +230,6 @@ function rewards_reset_password_page($attr, $content) {
             </div>
             <h1 class="stellar-login-header sl-brandon sl-white sl-xxlarge">Reset Password</h1>
             <div class="login-wrapper">
-                <!-- <div class="stellar-login col-lg-12"></div> -->
                 <form id="reset-password-form" method="post" novalidate>
                     <div class="notification">
                         <p class="error-message" style="display: none;"></p>
@@ -262,20 +301,20 @@ function rewards_header_navigation($attr, $content) {
 add_shortcode('rewards-header-navigation', 'rewards_header_navigation');
 
 function rewards_member_summary($attr, $content) {
+
 	return '<div class="progress-bar-wrapper row">
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <div class="second circle">
-                    <strong><span class="stl_token_points sl-brandon sl-xxxxlarge sl-white"></span> 
-                    <span class="pts-label sl-brandon sl-xlarge sl-white">POINTS</span></strong>
-                </div>
+            <div class="col-lg-4 col-md-5 col-sm-4">
+                    <div class="second circle">
+                        <strong><span class="stl_token_points sl-brandon sl-xxxxlarge sl-white"></span> <span class="pts-label sl-brandon sl-xlarge sl-white" style="padding-left: 13px;">POINTS</span></strong>
+                    </div>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 rewards-details-wrapper">
+            <div class="col-lg-8 col-md-7 col-sm-8 rewards-details-wrapper">
                 <h1 style="padding-top: 40px;" class="sl-brandon sl-white sl-xlarge sl-brandon hidden-xs sl-rewards-points-label">Rewards Points</h1>
                 <div class="sl-white sl-brandon-black sl-small reward-body"> </div>
-                <h1 style="padding-top: 20px;" class="sl-gold sl-xlarge sl-brandon hidden-xs">You’ve activated 
-	                <span class="rewards-count rewards-count-circle rewards-count-circle-main sl-black"></span> rewards
-                </h1>
-                <a href="#" class="sl-white sl-brandon-black sl-small sl-underline rewards-information"></a>
+                <h1 style="padding-top: 20px;" class="sl-gold sl-xlarge sl-brandon hidden-xs">You’ve activated <span class="rewards-count rewards-count-circle rewards-count-circle-main sl-black">0</span>                                    rewards</h1>
+                <a href="#" class="sl-white sl-brandon-black sl-small sl-underline rewards-information">CLICK FOR MORE INFORMATION.</a>
+                <div class="stellar-rewards" data-name="plum_main_reward"></div>
+                <div class="stellar-rewards-responses" data-datakey="stellar_rewards_responses" data-template="rewardResponseTemplate" limit="1000"></div>
             </div>
         </div>';
 }
@@ -289,7 +328,7 @@ function rewards_offer_section($attr, $content) {
 	        <p class="sl-dark-gray sl-small sl-brandon-black sl-circles-text">ADD TO YOUR CIRCLES TO ACTIVATE REWARDS</p>
 	        <p class="sl-center sl-italic sl-xxsmall sl-circles-info">Completed Rewards Circles will be automatically added to your Earned Rewards.</p>
 	        <div class="punchcards-wrapper">
-	        	'. do_shortcode('[stellar-punchcards data-template="punchcardsTemplate" data-sort_by="expiration_date"]') .'
+	        	'. do_shortcode('[stellar-punchcards template="punchcardsTemplate" sort_by="expiration_date" custom_handler="punchcardsHandler" ]') .'
 	        </div>
 	    </div>
 	    <div class="col-lg-6 coupons-container">
@@ -303,13 +342,13 @@ function rewards_offer_section($attr, $content) {
 	        <div class="coupons-wrapper-scroll">
 	            <div class="coupons-wrapper">
 	                <div id="tab1">
-	                	'. do_shortcode('[stellar-offers-responses data-placement="web_reward" data-template="activatedTemplate"]<span class="sl-empty-activated">No item to display.</span>[/stellar-offers-responses]') .'
+	                	'. do_shortcode('[stellar-offers-responses sort_dir="asc" placement="web_reward" template="activatedTemplate" custom_handler="couponsEarnedCustomHandler" ]<span class="sl-empty-activated">No item to display.</span>[/stellar-offers-responses]') .'
 	                </div>
 	                <div id="tab2">
-	                    '. do_shortcode('[stellar-offers data-placement="web_coupon" data-limit="50" data-template="couponsTemplate"]') .'
+	                    '. do_shortcode('[stellar-offers placement="web_coupon" limit="50" template="couponsTemplate" custom_handler="couponsCustomHandler" ]') .'
 	                </div>
 	                <div id="tab3">
-	                	'. do_shortcode('[stellar-offers-responses data-processing-status="clipped" data-template="clippedTemplate"]<span class="sl-empty-clipped">No item to display.</span>[/stellar-offers-responses]') .'
+	                	'. do_shortcode('[stellar-offers-responses sort_dir="asc" processing_status="clipped" template="clippedTemplate" custom_handler="couponsClipCustomHandler" ]<span class="sl-empty-clipped">No item to display.</span>[/stellar-offers-responses]') .'
 	                </div>
 	            </div>
 	        </div>
@@ -321,14 +360,14 @@ add_shortcode('rewards-offers-section', 'rewards_offer_section');
 function rewards_activities($attr, $content) {
 	return '<h1 class="sl-black sl-brandon sl-xxlarge profile-header">Activities</h1>
             <div class="activities-wrapper">
-            	'. do_shortcode('[stellar-activities data-template="activitiesTemplate"]') .'
+            	'. do_shortcode('[stellar-activities template="activitiesTemplate"]') .'
             </div>';
 }
 add_shortcode('rewards-activities', 'rewards_activities');
 
 function profile_profile($attr, $content) {
 	return '<h1 class="sl-black sl-brandon sl-xxlarge profile-header">Member Profile</h1>
-			'. do_shortcode('[stellar-profile data-fileds="memberProfileFields"]');
+			'. do_shortcode('[stellar-profile fields="memberProfileFields"]');
             
 }
 add_shortcode('rewards-profile', 'profile_profile');
@@ -344,5 +383,3 @@ function rewards_program_iframe($attr, $content) {
             </object>';
 }
 add_shortcode('rewards-program-iframe', 'rewards_program_iframe');
-
-?>

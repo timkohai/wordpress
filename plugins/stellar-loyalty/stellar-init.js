@@ -27,6 +27,7 @@ window.stellarEnvironments = {
     }
 };
 
+
 var stellar_default_settings = {
     static_page_path: '',
     landing_page: 'home.html', // s3 static home page
@@ -42,7 +43,8 @@ function memberProfileFields() {
                 rules: { name: 'rules', type: 'sl-validation', required: true } }, 
             { attrib: "last_name", source: "profile", label: "Last Name: {{value}}", type: 'text', 
                 rules: {  name: 'rules', type: 'sl-validation', required: true } }, 
-            { attrib: "email", source: "profile", label: "Email: {{value}}", type: 'text', format: "email" }, 
+            { attrib: "email", source: "profile", label: "Email: {{value}}", type: 'text', format: "email",
+                rules: {  name: 'rules', type: 'sl-validation', required: true } },  
             { attrib: "gender", source: "profile", label: "Gender: {{value}}", type: 'dropdown' }, 
             { attrib: "birthdate", source: "profile", label: "Birth Date: {{value}}", type: 'text', format: "localdate" }, 
             { attrib: "mobile_phone", source: "profile", label: "Mobile Number: {{value}}", type: 'text' }]
@@ -57,16 +59,16 @@ function memberProfileFields() {
     });
 
     fields.push({ attrib: "emailPreferences", source: "profile", label: "Email Preferences", editable: true,
-        fields: [{ attrib: "receive_rewards_cash_back_emails", source: "profile", label: "Receive Rewards Cash Back Email {{value}}", type: 'checkbox' }, 
-        { attrib: "receive_event_emails", source: "profile", label: "Receive Event Email {{value}}", type: 'checkbox' }, 
-        { attrib: "receive_promotional_emails", source: "profile", label: "Receive Promotional Email {{value}}", type: 'dropdown'}]
+        fields: [{ attrib: "receive_rewards_cash_back_emails", source: "profile", label: "Receive Rewards Cash Back Email: {{value}}", type: 'checkbox' }, 
+        { attrib: "receive_event_emails", source: "profile", label: "Receive Event Email: {{value}}", type: 'checkbox' }, 
+        { attrib: "receive_promotional_emails", source: "profile", label: "Receive Promotional Email: {{value}}", type: 'dropdown'}]
     });
     return fields;
 }
 
 function punchcardsTemplate(item) {
     var percent = (item.punches / item.required_punches) * 100,
-    desc = (item.description ? item.description : item.label);
+    desc = (item.heading ? item.heading : item.label);
     var circle = '<div class="c100 p' + parseInt(percent) + '"><span class="sl-brandon sl-dark-gray">' + item.punches + '/' + item.required_punches + '</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div>';
     var expires = '<p class="item-expiration">Expires ' + Stellar.ui.formatters.USDateFormat(item.punchcard_type.expiration_date) + '</p>';
     expiration = (item.punchcard_type.expiration_type == 'none') ? '' : expires;
@@ -76,6 +78,30 @@ function punchcardsTemplate(item) {
         '<p class="item-description">' + desc + '</p>' + expiration +
         '</div>' +
         '</div>';
+}
+
+function punchcardsHandler(item) {
+    var percent = (item.punches / item.required_punches) * 100,
+    desc = (item.description ? item.description : item.label);
+    var circle = '<div class="c100 p' + parseInt(percent) + '"><span class="sl-brandon sl-dark-gray">' + item.punches + '/' + item.required_punches + '</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div>';
+    var expires = '<p class="item-expiration">Expires ' + Stellar.ui.formatters.USDateFormat(item.punchcard_type.expiration_date) + '</p>';
+    expiration = (item.punchcard_type.expiration_type == 'none') ? '' : expires;
+    var body = '<div class="punchcard-items">' +
+        '<div class="punchcard-required">' + circle + '</div>' +
+        '<div class="punchcard-content">' +
+        '<p class="item-description">' + item.heading + '</p>' + 
+        '<p class="item-subheading">'+ item.subheading +'</p>' +
+        '<p class="item-body">'+ item.body +'</p>' +
+        '<p class="item-details">'+ item.details +'</p>' +
+        expiration +
+        '</div>' +
+        '</div>';
+
+    Stellar.ui.openPopup({
+      type: 'punchcard-details',
+      title: "<h2>"+(item.description || "Rewards Circle")+"</h2>",
+      body: body
+    });
 }
 
 
@@ -124,19 +150,20 @@ function newsfeedTemplate(item) {
 }
 
 function couponsTemplate(data) {
+    $('.sl-empty-coupons').hide();
     var tmpl, expiration = '';
 
     if( data.end_date ) {
         var date1 = new Date(data.end_date); 
-        var date2 = new Date();
+        var date2 = new Date(); 
         var timeDiff = Math.abs(date2.getTime() - date1.getTime());
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
         if( diffDays <= 3 && diffDays > 1 ) {
-            expiration = '<div class="expiration"> <span class="expiration-circle">'+diffDays+'</span> <span class="expiration-text">Days Left</span></div>';
+                 expiration = '<div class="expiration"> <span class="expiration-circle">'+diffDays+'</span> <span class="coupon-expiration sl-brandon sl-mid-blue">Days Left</span> <div class="coupon-expires-at">Expires '+Stellar.ui.formatters.slashFormat(data.end_date)+'</div></div>';
         } else if(diffDays == 1){
-            expiration = '<div class="expiration"> <span class="expiration-circle">'+diffDays+'</span> <span class="expiration-text">Day Left</span></div>';
+                 expiration = '<div class="expiration"> <span class="expiration-circle">'+diffDays+'</span> <span class="coupon-expiration sl-brandon sl-mid-blue">Day Left</span> <div class="coupon-expires-at">Expires '+Stellar.ui.formatters.slashFormat(data.end_date)+'</div></div>';
         } else {
-            expiration = '<div class="expiration"><span class="expiration-text">Expires: '+Stellar.ui.formatters.USDateFormat(data.end_date)+'</span></div>';
+            expiration = '<div class="expiration"><span class="expiration-text">Expires: '+Stellar.ui.formatters.slashFormat(data.end_date)+'</span></div>';
         }
     }
 
@@ -149,6 +176,8 @@ function couponsTemplate(data) {
             .replace('images/clip.png', settings.static_page_path + 'images/unclip.png')
             .replace('clip-item', 'clip-item' + data.id);
     }
+
+    tmpl = $(tmpl).find('.stl_details').html(Stellar.util.truncateString(data.details, 100)).end().prop('outerHTML');
 
     tmpl = tmpl.replace('<div class="expiration"></div>', '<div class="expiration">'+expiration+'</div>');
     return tmpl;
@@ -177,6 +206,98 @@ function activatedTemplate(data) {
     }
 
     return tmpl;
+}
+
+function couponsCustomHandler(data) {
+    var tmpl = '<div class="row">' +
+            '<div class="coupon-image col-md-4 col-md-offset-4">' +
+            '<img src="' + data.image_url + '">' +
+            '</div>' +
+            '<div style="clear:both;"></div>' +
+            '<div class="coupon-content">' +
+            '<p class="item-description sl-chalet sl-dark-blue">' + data.heading + '</p>' +
+            '<p class="sl-brandon sl-mid-blue sl-medium">' + data.body + '</p>' +
+            '<p class="sl-chalet sl-black">' + data.details + '</p>' +
+            '</div><div>' +
+            '<div class="clip-item' + data.id + '"> ' +
+            // '<button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');">'+clipText+'</button></div>' +
+            '</div>';
+
+    Stellar.ui.openPopup({
+      type: 'earned-offers-response-details',
+      title: "<h2>"+(data.description || "Rewards Coupon")+"</h2>",
+      body: tmpl
+    });
+    return true;
+}
+
+function couponsEarnedCustomHandler(data) {
+    var offer = data.offer,
+            clip = (data.processing_status == "pending") ? 'clip' : 'unclip';
+    var clipText = (data.processing_status == "pending") ? '+' : '-';
+    var tmpl = '<div class="row">' +
+            '<div class="coupon-image col-md-4 col-md-offset-4">' +
+            '<img src="' + offer.image_url + '">' +
+            '</div>' +
+            '<div style="clear:both;"></div>' +
+            '<div class="coupon-content">' +
+            '<p class="item-description sl-chalet sl-dark-blue">' + offer.heading + '</p>' +
+            '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
+            '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
+            '</div><div>' +
+            '<div class="clip-item' + data.id + '"> ' +
+            // '<button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');">'+clipText+'</button></div>' +
+            '</div>';
+
+    Stellar.ui.openPopup({
+      type: 'earned-offers-response-details',
+      title: "<h2>"+(offer.description || "Rewards Coupon")+"</h2>",
+      body: tmpl
+    });
+}
+
+function couponsClipCustomHandler(data) {
+    
+    var offer = data.offer,
+            clip = (data.processing_status == "pending") ? 'clip' : 'unclip';
+    var clipText = (data.processing_status == "pending") ? '+' : '-';
+
+    if( offer.end_date ) {
+        var date1 = new Date(offer.end_date); 
+        var date2 = new Date(); 
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+        if( diffDays <= 3 && diffDays > 1 ) {
+                 expiration = '<div class="expiration"> <span class="expiration-circle">'+diffDays+'</span> <span class="coupon-expiration sl-brandon sl-mid-blue">Days Left</span> <div class="coupon-expires-at">Expires '+Stellar.ui.formatters.slashFormat(offer.end_date)+'</div></div>';
+        } else if(diffDays == 1){
+                 expiration = '<div class="expiration"> <span class="expiration-circle">'+diffDays+'</span> <span class="coupon-expiration sl-brandon sl-mid-blue">Day Left</span> <div class="coupon-expires-at">Expires '+Stellar.ui.formatters.slashFormat(offer.end_date)+'</div></div>';
+        } else {
+            expiration = '<div class="expiration"><span class="expiration-text">Expires: '+Stellar.ui.formatters.slashFormat(offer.end_date)+'</span></div>';
+        }
+    }
+
+
+    var tmpl = '<div class="row">' +
+            '<div class="coupon-image col-md-4 col-md-offset-4">' +
+            '<img src="' + offer.image_url + '">' +
+            '</div>' +
+            '<div style="clear:both;"></div>' +
+            '<div class="coupon-content">' +
+            '<p class="item-description sl-chalet sl-dark-blue">' + offer.heading + '</p>' +
+            '<p class="item-subheading">' + offer.subheading + '</p>' +
+            '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
+            '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
+            '<div class="expiration">'+expiration+'</div>'+
+            '</div><div>' +
+            '<div class="clip-item' + data.id + '"> ' +
+            // '<button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');">'+clipText+'</button></div>' +
+            '</div>';
+
+    Stellar.ui.openPopup({
+      type: 'earned-offers-response-details',
+      title: "<h2>"+(offer.description || "Rewards Coupon")+"</h2>",
+      body: tmpl
+    });
 }
 
 function clippedTemplate(data) {
@@ -208,18 +329,31 @@ function activitiesTemplate(data) {
     return '<div class="row stl_content sl-activity">' +
         '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 sl-brandon sl-white sl-left"><span class="black-circle">' + parseInt(data.metric_amount) + '</span></div>' +
         '<div class="col-lg-8 col-md-8 col-sm-8 sl-brandon-black col-xs-7 sl-mid-blue sl-small sl-left activity-details" style="padding-top: 10px">' + data.display_activity + reward + ' </div>' +
-        '<div class="col-lg-3 col-md-3 col-sm-3 sl-left sl-black col-xs-3 activity-date" style="padding-top: 10px">' + Stellar.ui.formatters.USDateFormat(data.activity_ts) + '</div>' +
+        '<div class="col-lg-3 col-md-3 col-sm-3 sl-left sl-black col-xs-3 activity-date" style="padding-top: 10px">' + Stellar.ui.formatters.slashFormat(data.activity_ts) + '</div>' +
         '</div>';
 }
 
+function limitResponse(response){
+    if(response.success === true){
+            Stellar.ui.rebuild(['stellar-offers-responses', 'stellar-offers']);
+        } else {
+            Stellar.ui.openPopup({
+                  type: 'clip-coupon-error',
+                  title: "<h2>Error!</h2>",
+                  body: response.responseJSON.message,
+                });
+            Stellar.ui.rebuild(['stellar-offers-responses', 'stellar-offers']);    
+        }
+}
+
 function clipCoupon(event, id) {
-    $('.clip-item' + id).empty().addClass('stellar-loader');
+    $('.clip-item' + id).hide().addClass('stellar-loader');
     var btn = "unclipCoupon(event," + id + ")";
     Stellar.api.callClipItem({
         id: id,
         endpoint: 'offers/responses'
     }, function (response) {
-        Stellar.ui.rebuild(['stellar-offers-responses', 'stellar-offers']);
+        limitResponse(response);
     });
     event.stopPropagation();
 }
@@ -232,7 +366,7 @@ function unclipCoupon(event, id) {
         endpoint: 'offers/responses',
         _method: 'DELETE'
     }, function (response) {
-        Stellar.ui.rebuild(['stellar-offers-responses', 'stellar-offers']);
+        limitResponse(response);
     });
     event.stopPropagation();
 }
@@ -243,7 +377,7 @@ function clipOffer(event, id) {
     Stellar.api.callClipItem({
         id: id,
     }, function (response) {
-        Stellar.ui.rebuild(['stellar-offers-responses', 'stellar-offers']);
+        limitResponse(response);
     });
     event.stopPropagation();
 }
@@ -255,11 +389,26 @@ function unclipOffer(event, id) {
         id: id,
         _method: 'DELETE'
     }, function (response) {
-        Stellar.ui.rebuild(['stellar-offers-responses', 'stellar-offers']);
+        limitResponse(response)
     });
     event.stopPropagation();
 }
 
+var rewardsCount = 0;
+function rewardResponseTemplate(item) {
+    rewardsCount++;
+    var html = '<div class="stl_content row">'+
+       '<div class="col-lg-2"><span class="rewards-count-circle sl-white sl-brandon">'+rewardsCount+'</span></div>'+
+       '<div class="col-lg-4 sl-brandon sl-mid-blue sl-small sl-left my-rewards-body">'+item.reward.heading+'</div>'+
+       '<div class="col-lg-3">'+
+          '<p class="my-rewards-expiration">Activated '+Stellar.ui.formatters.USDateFormat(item.reward.start_date)+'</p>'+
+       '</div>'+
+       '<div class="col-lg-3">'+
+          '<p class="my-rewards-expiration">Expires '+Stellar.ui.formatters.USDateFormat(item.reward.end_date)+'</p>'+
+       '</div>'+
+    '</div>';
+    return html;
+}
 
 // Run Stellar
 // This function is called when your environment and the Stellar JS SDK are loaded and ready to run.
@@ -272,6 +421,7 @@ function unclipOffer(event, id) {
 
 window.runStellar = function() {
     window.stellarConfig.allowCrossDomain = true;
+    $ = jQuery.noConflict();  
 };
 
 window.stellarReady = function () {
@@ -434,7 +584,7 @@ window.stellarReady = function () {
     });
 
     Stellar.events.bind('contentTokens.loaded', function () {
-        if ($('.stellar-home').length) {
+        if ($('.stellar-home-page').length) {
             var points = parseInt(Stellar.member.summary.metrics.point.balance);
             var len = (points.toString().length);
 
@@ -444,7 +594,7 @@ window.stellarReady = function () {
                 $('.stl_token_points').css("padding-left","25px");
             }
             var percentage = (points / 500);
-            $("#slbar").attr("data-percent", parseInt(percentage));
+            // $("#slbar").attr("data-percent", parseInt(percentage));
             $('.second.circle').circleProgress({
                 value: percentage,
                 size: 350,
@@ -459,20 +609,13 @@ window.stellarReady = function () {
         }
     });
 
-    if (Stellar.member.isKnown) {
-        Stellar.api.callRewardsResponses({}, function (data) {
-            $('.rewards-count').text(Stellar.member.rewardsResponses.default.length);
-            $('.rewards-information').text('CLICK FOR MORE INFORMATION.');
-        });
+    Stellar.events.bind('rewardsResponses.loaded', function(response) {
+        $('.rewards-count-circle-main').html(response.length || 0);
+    });
 
-        Stellar.api.callRewards({}, function (data) {
-            var reward = Stellar.member.rewards.default, body;
-            for (var i in reward) {
-                body = reward[i].body;
-                $('.reward-body').text(body.toUpperCase());
-            }
-        });
-    }
+    Stellar.events.bind('rewards.loaded', function(response) {
+        $('.reward-body').html(response[0].body);
+    });
 
     // Plum Market Forgot/Reset Password Page
     if (forgotPasswordPage || resetPasswordPage) {
@@ -503,18 +646,17 @@ window.stellarReady = function () {
     });
 
     $('.rewards-information').on('click', function (e) {
-        var rewardText = "",
-            rewards = Stellar.member.rewardsResponses.default;
-        for (var i in rewards) {
-            var count = parseInt(i) + 1;
-            rewardText += '<div class="row"><div class="col-lg-2"><span class="rewards-count-circle sl-white sl-brandon">' + count 
-            + '</span></div><div class="col-lg-4 sl-brandon sl-mid-blue sl-small sl-left my-rewards-body">' + rewards[i].reward.heading + 
-            ' </div><div class="col-lg-3"><p class="my-rewards-expiration">Activated '+Stellar.ui.formatters.USDateFormat(rewards[i].reward.start_date)+'</p></div><div class="col-lg-3"><p class="my-rewards-expiration">Expires '+Stellar.ui.formatters.USDateFormat(rewards[i].reward.end_date)+'</p></div></div>';
-        }
+        if (Stellar.member.rewardsResponses === 'undefined') { return }
+        var rewardResponses = $('.stellar-rewards-responses');
+        var count = rewardResponses.children().length;
+
+        var body = '<h1 style="padding-top: 20px;" class="reward-info sl-gold sl-brandon sl-center">You’ve activated '+
+        '<span class="rewards-count rewards-count-circle rewards-count-circle-title sl-white">' + count + '</span> rewards</h1><div class="rewards-responses-content">' + rewardResponses.html() + '</div>';
+        
         opts = {
             title: 'My Rewards',
             type: 'my-rewards large',
-            body: '<h1 style="padding-top: 20px;" class="reward-info sl-gold sl-brandon sl-center">You’ve activated <span class="rewards-count rewards-count-circle rewards-count-circle-title sl-white">' + Stellar.member.rewardsResponses.default.length + '</span> rewards</h1>' + rewardText
+            body: body
         }
         Stellar.ui.openPopup(opts);
         e.preventDefault();

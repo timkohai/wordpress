@@ -13,24 +13,22 @@
 
 get_header(); ?>
 
-	<div class="container-main">
-	    <div class="main-content container">
-	        <!-- Stellar start -->
-			<?php
-			// Start the loop.
-			while ( have_posts() ) : the_post();
+	<div class="post-content">
+	    <!-- Start Stellar Content -->
+	    <?php
+		// Start the loop.
+		while ( have_posts() ) : the_post();
 
-				// Include the page content template.
-				the_content( sprintf(
-					__( 'Continue reading %s', 'twentyfifteen' ),
-					the_title( '<span class="screen-reader-text">', '</span>', false )
-				) );
+			// Include the page content template.
+			the_content( sprintf(
+				__( 'Continue reading %s', 'twentyfifteen' ),
+				the_title( '<span class="screen-reader-text">', '</span>', false )
+			) );
 
-			// End the loop.
-			endwhile;
-			?>
-	        <!-- Stellar End -->
-	    </div>
+		// End the loop.
+		endwhile;
+		?>
+	    <!-- End Stellar Content -->
 	</div>
 
 <?php get_footer(); ?>
