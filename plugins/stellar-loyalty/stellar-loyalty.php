@@ -66,7 +66,8 @@ function check_stellar_loyalty_shortcodes() {
 		'stellar_activities',
 		'stellar_offers',
 		'stellar_offers_responses',
-		'stellar_punchcards'
+		'stellar_punchcards',
+		'stellar_content_page'
 	);
 
 	foreach ($shortcodes_to_find as $shortcode) {
