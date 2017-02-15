@@ -7,7 +7,8 @@ $stellar_elements = array(
     'stellar_activities',
     'stellar_offers',
     'stellar_offers_responses',
-    'stellar_punchcards'
+    'stellar_punchcards',
+    'stellar_content_page'
 );
 
 function stellar_attributes($attr) {
@@ -31,7 +32,8 @@ function stellar_attributes($attr) {
         'fields' => '',
         'respondable' => '',
         'mode' => '',
-        'test' => ''
+        'test' => '',
+        'id' => ''
     ];
 
     /* Get shortcode attribute then merge html and stellar attribute */

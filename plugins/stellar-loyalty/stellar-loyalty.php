@@ -377,9 +377,4 @@ function profile_preferences($attr, $content) {
 }
 add_shortcode('rewards-preferences', 'profile_preferences');
 
-function rewards_program_iframe($attr, $content) {
-	return '<object class="program-container" data="https://s3.amazonaws.com/stellar-plum-staging-1be6mv2w1afxt33srboh/static_files/mobile_terms.html"> 
-                    Your browser doesn’t support the object tag. 
-            </object>';
-}
-add_shortcode('rewards-program-iframe', 'rewards_program_iframe');
+

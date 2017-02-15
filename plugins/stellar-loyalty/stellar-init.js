@@ -27,7 +27,6 @@ window.stellarEnvironments = {
     }
 };
 
-
 var stellar_default_settings = {
     static_page_path: '',
     landing_page: 'home.html', // s3 static home page
@@ -397,15 +396,20 @@ function unclipOffer(event, id) {
 var rewardsCount = 0;
 function rewardResponseTemplate(item) {
     rewardsCount++;
+
+    var activated = '', expired = '';
+    if (item.reward.start_date) {
+        activated = '<p class="my-rewards-expiration">Activated '+Stellar.ui.formatters.USDateFormat(item.reward.start_date)+'</p>';
+    }
+    if (item.reward.end_date) {
+        expired = '<p class="my-rewards-expiration">Expires '+Stellar.ui.formatters.USDateFormat(item.reward.end_date)+'</p>'
+    }
+
     var html = '<div class="stl_content row">'+
        '<div class="col-lg-2"><span class="rewards-count-circle sl-white sl-brandon">'+rewardsCount+'</span></div>'+
        '<div class="col-lg-4 sl-brandon sl-mid-blue sl-small sl-left my-rewards-body">'+item.reward.heading+'</div>'+
-       '<div class="col-lg-3">'+
-          '<p class="my-rewards-expiration">Activated '+Stellar.ui.formatters.USDateFormat(item.reward.start_date)+'</p>'+
-       '</div>'+
-       '<div class="col-lg-3">'+
-          '<p class="my-rewards-expiration">Expires '+Stellar.ui.formatters.USDateFormat(item.reward.end_date)+'</p>'+
-       '</div>'+
+       '<div class="col-lg-3">'+ activated +'</div>'+
+       '<div class="col-lg-3">'+ expired +'</div>'+
     '</div>';
     return html;
 }
