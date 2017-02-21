@@ -10,33 +10,37 @@
  */
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
       <title>
-         Plum Market   &#8211;  delete me   
+         Plum Market Rewards
       </title>
       <!--[if lte IE 8]>
-      <script type="text/javascript" src="http://dev.plummarket.com/wp-content/themes/Avada/js/html5shiv.js"></script>
+      <script type="text/javascript" src="https://www.plummarket.com/wp-content/themes/Avada/js/html5shiv.js"></script>
       <![endif]-->
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-      <link rel="shortcut icon" href="http://dev.plummarket.com/wp-content/uploads/2015/05/favicon.ico" type="image/x-icon" />
-      <link rel="alternate" type="application/rss+xml" title="Plum Market &raquo; Feed" href="http://dev.plummarket.com/feed/" />
-      <link rel="alternate" type="application/rss+xml" title="Plum Market &raquo; Comments Feed" href="http://dev.plummarket.com/comments/feed/" />
-      <meta property="og:title" content="delete me"/>
+      <link rel="shortcut icon" href="http://www.plummarket.com/wp-content/uploads/2015/05/favicon.ico" type="image/x-icon" />
+      <link rel="alternate" type="application/rss+xml" title="Plum Market &raquo; Feed" href="https://www.plummarket.com/feed/" />
+      <link rel="alternate" type="application/rss+xml" title="Plum Market &raquo; Comments Feed" href="https://www.plummarket.com/comments/feed/" />
+      <link rel="alternate" type="application/rss+xml" title="Plum Market &raquo; Careers Comments Feed" href="https://www.plummarket.com/careers/feed/" />
+      <meta property="og:title" content="Careers"/>
       <meta property="og:type" content="article"/>
-      <meta property="og:url" content="http://dev.plummarket.com/delete-me/"/>
+      <meta property="og:url" content="https://www.plummarket.com/careers/"/>
       <meta property="og:site_name" content="Plum Market"/>
-      <meta property="og:description" content=""/>
-      <meta property="og:image" content="http://dev.plummarket.com/wp-content/uploads/2015/10/white_lvwtresize-logo.png"/>
+      <meta property="og:description" content="Work with us! We’re growing all positions.
+         To learn more about the Plum Market culture, check out this video:
+         Applying for a Position
+         Each Plum Market location is responsible for its own recruiting and hiring. You may apply for each location and/or individual positions that interest you. Your application will be reviewed and if you meet the initial"/>
+      <meta property="og:image" content="http://www.plummarket.com/wp-content/uploads/2015/10/white_lvwtresize-logo.png"/>
       <meta property="fb:admins" content="CHxVfyi70sd"/>
-      <meta property="og:title" content="delete me"/>
+      <meta property="og:title" content="Careers"/>
       <meta property="og:type" content="article"/>
-      <meta property="og:url" content="http://dev.plummarket.com/delete-me/"/>
+      <meta property="og:url" content="https://www.plummarket.com/careers/"/>
       <meta property="og:site_name" content="Plum Market"/>
       <meta property="og:image" content="http://www.plummarket.com/wp-content/uploads/2016/01/PlumMarket_2c_inline.jpg"/>
       <script type="text/javascript">
-         window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/dev.plummarket.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.3"}};
+         window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/www.plummarket.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.3"}};
          !function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
       </script>
       <style type="text/css">
@@ -53,51 +57,47 @@
          padding: 0 !important;
          }
       </style>
-      <link rel='stylesheet' id='bs_bootstrap-css'  href='http://dev.plummarket.com/wp-content/plugins/bootstrap-shortcodes/css/bootstrap.css?ver=4.2.3' type='text/css' media='all' />
-      <link rel='stylesheet' id='bs_shortcodes-css'  href='http://dev.plummarket.com/wp-content/plugins/bootstrap-shortcodes/css/shortcodes.css?ver=4.2.3' type='text/css' media='all' />
-      <link rel='stylesheet' id='layerslider-css'  href='http://dev.plummarket.com/wp-content/plugins/LayerSlider/static/css/layerslider.css?ver=5.3.2' type='text/css' media='all' />
-      <link rel='stylesheet' id='ls-google-fonts-css'  href='http://fonts.googleapis.com/css?family=Lato:100,300,regular,700,900%7COpen+Sans:300%7CIndie+Flower:regular%7COswald:300,regular,700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
-      <link rel='stylesheet' id='rs-plugin-settings-css'  href='http://dev.plummarket.com/wp-content/plugins/revslider/rs-plugin/css/settings.css?ver=4.6.5' type='text/css' media='all' />
+      <link rel='stylesheet' id='bs_bootstrap-css'  href='https://www.plummarket.com/wp-content/plugins/bootstrap-shortcodes/css/bootstrap.css?ver=4.2.3' type='text/css' media='all' />
+      <link rel='stylesheet' id='bs_shortcodes-css'  href='https://www.plummarket.com/wp-content/plugins/bootstrap-shortcodes/css/shortcodes.css?ver=4.2.3' type='text/css' media='all' />
+      <link rel='stylesheet' id='layerslider-css'  href='https://www.plummarket.com/wp-content/plugins/LayerSlider/static/css/layerslider.css?ver=5.3.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='ls-google-fonts-css'  href='https://fonts.googleapis.com/css?family=Lato:100,300,regular,700,900%7COpen+Sans:300%7CIndie+Flower:regular%7COswald:300,regular,700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+      <link rel='stylesheet' id='rs-plugin-settings-css'  href='https://www.plummarket.com/wp-content/plugins/revslider/rs-plugin/css/settings.css?ver=4.6.5' type='text/css' media='all' />
       <style id='rs-plugin-settings-inline-css' type='text/css'>
          .tp-caption a{color:#ff7302;text-shadow:none;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out}.tp-caption a:hover{color:#ffa902}
       </style>
-      <!-- <link rel='stylesheet' id='avada-stylesheet-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/style.css?ver=3.7.2' type='text/css' media='all' /> -->
-      <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/css/style.css">
+      <link rel='stylesheet' id='avada-stylesheet-css'  href='<?php echo esc_url( get_template_directory_uri() ); ?>/css/style.css' type='text/css' media='all' />
       <!--[if lte IE 9]>
-      <link rel='stylesheet' id='avada-shortcodes-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/shortcodes.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='avada-shortcodes-css'  href='https://www.plummarket.com/wp-content/themes/Avada/shortcodes.css?ver=3.7.2' type='text/css' media='all' />
       <![endif]-->
-      <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/css/font-awesome.css">
-      <!-- <link rel='stylesheet' id='fontawesome-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/fonts/fontawesome/font-awesome.css?ver=3.7.2' type='text/css' media='all' /> -->
+      <link rel='stylesheet' id='fontawesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />
       <!--[if lte IE 9]>
-      <link rel='stylesheet' id='avada-IE-fontawesome-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/fonts/fontawesome/font-awesome.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='avada-IE-fontawesome-css'  href='https://www.plummarket.com/wp-content/themes/Avada/fonts/fontawesome/font-awesome.css?ver=3.7.2' type='text/css' media='all' />
       <![endif]-->
-      <link rel='stylesheet' id='avada-animations-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/css/animations.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='avada-animations-css'  href='https://www.plummarket.com/wp-content/themes/Avada/css/animations.css?ver=3.7.2' type='text/css' media='all' />
       <!--[if lte IE 8]>
-      <link rel='stylesheet' id='avada-IE8-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/css/ie8.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='avada-IE8-css'  href='https://www.plummarket.com/wp-content/themes/Avada/css/ie8.css?ver=3.7.2' type='text/css' media='all' />
       <![endif]-->
       <!--[if IE]>
-      <link rel='stylesheet' id='avada-IE-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/css/ie.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='avada-IE-css'  href='https://www.plummarket.com/wp-content/themes/Avada/css/ie.css?ver=3.7.2' type='text/css' media='all' />
       <![endif]-->
-      <link rel='stylesheet' id='avada-media-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/css/media.css?ver=3.7.2' type='text/css' media='all' />
-      <link rel='stylesheet' id='avada-ipad-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/css/ipad.css?ver=3.7.2' type='text/css' media='all' />
-      <link rel='stylesheet' id='solr-styles-css'  href='http://dev.plummarket.com/store/js/solrsearch/autocomplete.css?ver=3.7.2' type='text/css' media='all' />
-      <link rel='stylesheet' id='ut-styles-css'  href='http://dev.plummarket.com/wp-content/themes/Avada/css/ut.css?ver=3.7.2' type='text/css' media='all' />
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/bootstrap-shortcodes/js/bootstrap.js?ver=4.2.3'></script>
-      <script type='text/javascript' src='<?php echo esc_url( get_template_directory_uri() ); ?>/js/bootstrap.js'></script>
-
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/bootstrap-shortcodes/js/init.js?ver=4.2.3'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/q2w3-fixed-widget/js/q2w3-fixed-widget.min.js?ver=4.0.6'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/LayerSlider/static/js/greensock.js?ver=1.11.8'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/LayerSlider/static/js/layerslider.kreaturamedia.jquery.js?ver=5.3.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/LayerSlider/static/js/layerslider.transitions.js?ver=5.3.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js?ver=4.6.5'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js?ver=4.6.5'></script>
-      <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://dev.plummarket.com/xmlrpc.php?rsd" />
-      <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://dev.plummarket.com/wp-includes/wlwmanifest.xml" />
-      <link rel='canonical' href='http://dev.plummarket.com/delete-me/' />
-      <link rel='shortlink' href='http://dev.plummarket.com/?p=6334' />
+      <link rel='stylesheet' id='avada-media-css'  href='https://www.plummarket.com/wp-content/themes/Avada/css/media.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='avada-ipad-css'  href='https://www.plummarket.com/wp-content/themes/Avada/css/ipad.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='solr-styles-css'  href='https://www.plummarket.com/store/js/solrsearch/autocomplete.css?ver=3.7.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='ut-styles-css'  href='https://www.plummarket.com/wp-content/themes/Avada/css/ut.css?ver=3.7.2' type='text/css' media='all' />
+      <script type='text/javascript' src='https://www.plummarket.com/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/bootstrap-shortcodes/js/bootstrap.js?ver=4.2.3'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/bootstrap-shortcodes/js/init.js?ver=4.2.3'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/q2w3-fixed-widget/js/q2w3-fixed-widget.min.js?ver=4.0.6'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/LayerSlider/static/js/greensock.js?ver=1.11.8'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/LayerSlider/static/js/layerslider.kreaturamedia.jquery.js?ver=5.3.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/LayerSlider/static/js/layerslider.transitions.js?ver=5.3.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.tools.min.js?ver=4.6.5'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js?ver=4.6.5'></script>
+      <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.plummarket.com/xmlrpc.php?rsd" />
+      <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.plummarket.com/wp-includes/wlwmanifest.xml" />
+      <link rel='canonical' href='https://www.plummarket.com/careers/' />
+      <link rel='shortlink' href='https://www.plummarket.com/?p=302' />
       <style>#responsive-menu .appendLink, #responsive-menu .responsive-menu li a, #responsive-menu #responsive-menu-title a,#responsive-menu .responsive-menu, #responsive-menu div, #responsive-menu .responsive-menu li, #responsive-menu{box-sizing: content-box !important;-moz-box-sizing: content-box !important;-webkit-box-sizing: content-box !important;-o-box-sizing: content-box !important}.RMPushOpen{width: 100% !important;overflow-x: hidden !important;height: 100% !important}.RMPushSlide{position: relative;left: 60%}#responsive-menu{position: absolute;width: 60%;left: -60%;top: 0px;background: #2d2d2d;z-index: 9999;box-shadow: 0px 1px 8px #333333;font-size: 13px !important;max-width: 999px;display: none}#responsive-menu.admin-bar-showing{padding-top: 32px}#click-menu.admin-bar-showing{margin-top: 32px}#responsive-menu #rm-additional-content{padding: 10px 5% !important;width: 90% !important;color: #FFFFFF}#responsive-menu .appendLink{right: 0px !important;position: absolute !important;border: 1px solid #2d2d2d !important;padding: 12px 10px !important;color: #FFFFFF !important;background: #2d2d2d !important;height: 20px !important;line-height: 20px !important;border-right: 0px !important}#responsive-menu .appendLink:hover{cursor: pointer;background: #3f3f3f !important;color: #FFFFFF !important}#responsive-menu .responsive-menu, #responsive-menu div, #responsive-menu .responsive-menu li,#responsive-menu{text-align: left !important}#responsive-menu .RMImage{vertical-align: middle;margin-right: 10px;display: inline-block}#responsive-menu.RMOpened{}#responsive-menu,#responsive-menu input{}#responsive-menu #responsive-menu-title{width: 95% !important;font-size: 14px !important;padding: 20px 0px 20px 5% !important;margin-left: 0px !important;background: #2d2d2d !important;white-space: nowrap !important}#responsive-menu #responsive-menu-title,#responsive-menu #responsive-menu-title a{color: #FFFFFF !important;text-decoration: none !important;overflow: hidden !important}#responsive-menu #responsive-menu-title a:hover{color: #FFFFFF !important;text-decoration: none !important}#responsive-menu .appendLink,#responsive-menu .responsive-menu li a,#responsive-menu #responsive-menu-title a{transition: 1s all;-webkit-transition: 1s all;-moz-transition: 1s all;-o-transition: 1s all}#responsive-menu .responsive-menu{width: 100% !important;list-style-type: none !important;margin: 0px !important}#responsive-menu .responsive-menu li.current-menu-item > a,#responsive-menu .responsive-menu li.current-menu-item > .appendLink,#responsive-menu .responsive-menu li.current_page_item > a,#responsive-menu .responsive-menu li.current_page_item > .appendLink{background: #2d2d2d !important;color: #FFFFFF !important}#responsive-menu .responsive-menu li.current-menu-item > a:hover,#responsive-menu .responsive-menu li.current-menu-item > .appendLink:hover,#responsive-menu .responsive-menu li.current_page_item > a:hover,#responsive-menu .responsive-menu li.current_page_item > .appendLink:hover{background: #3f3f3f !important;color: #FFFFFF !important}#responsive-menu.responsive-menu ul{margin-left: 0px !important}#responsive-menu .responsive-menu li{list-style-type: none !important;position: relative !important}#responsive-menu .responsive-menu ul li:last-child{padding-bottom: 0px !important}#responsive-menu .responsive-menu li a{padding: 12px 0px 12px 5% !important;width: 95% !important;display: block !important;height: 20px !important;line-height: 20px !important;overflow: hidden !important;white-space: nowrap !important;color: #FFFFFF !important;border-top: 1px solid #2d2d2d !important;text-decoration: none !important}#click-menu{text-align: center;cursor: pointer;font-size: 13px !important;display: none;position: absolute;left: 5%;top: 28px;color: #ffffff;padding: 5px;z-index: 9999}#responsive-menu #responsiveSearch{display: block !important;width: 95% !important;padding-left: 5% !important;border-top: 1px solid #2d2d2d !important;clear: both !important;padding-top: 10px !important;padding-bottom: 10px !important;height: 40px !important;line-height: 40px !important}#responsive-menu #responsiveSearchSubmit{display: none !important}#responsive-menu #responsiveSearchInput{width: 91% !important;padding: 5px 0px 5px 3% !important;-webkit-appearance: none !important;border-radius: 2px !important;border: 1px solid #2d2d2d !important}#responsive-menu .responsive-menu,#responsive-menu div,#responsive-menu .responsive-menu li{width: 100% !important;margin-left: 0px !important;padding-left: 0px !important}#responsive-menu .responsive-menu li li a{padding-left: 10% !important;width: 90% !important;overflow: hidden !important}#responsive-menu .responsive-menu li li li a{padding-left: 15% !important;width: 85% !important;overflow: hidden !important}#responsive-menu .responsive-menu li li li li a{padding-left: 20% !important;width: 80% !important;overflow: hidden !important}#responsive-menu .responsive-menu li li li li li a{padding-left: 25% !important;width: 75% !important;overflow: hidden !important}#responsive-menu .responsive-menu li a:hover{background: #3f3f3f !important;color: #FFFFFF !important;list-style-type: none !important;text-decoration: none !important}#click-menu #RMX{display: none;font-size: 24px;line-height: 12px !important;height: 12px !important;color: #ffffff !important}#click-menu .threeLines{width: 22px !important;height: 12px !important;margin: auto !important}#click-menu .threeLines .line{height: 2px !important;margin-bottom: 3px !important;background: #ffffff !important;width: 100% !important}#click-menu .threeLines .line.last{margin-bottom: 0px !important}@media only screen and ( min-width : 0px ) and ( max-width : 767px ){#click-menu{display: block}}#wrapper{position: relative !important;left: 0px}</style>
       <script type="text/javascript">
          jQuery(document).ready(function() {
@@ -115,7 +115,7 @@
                 
                 data.action = 'revslider_ajax_call_front';
                 data.client_action = 'get_slider_html';
-                data.token = '735d99525b';
+                data.token = '781be9dfa3';
                 data.type = obj.type;
                 data.id = obj.id;
                 data.aspectratio = obj.aspectratio;
@@ -123,7 +123,7 @@
                 // SYNC AJAX REQUEST
                 jQuery.ajax({
                     type:"post",
-                    url:"http://dev.plummarket.com/wp-admin/admin-ajax.php",
+                    url:"https://www.plummarket.com/wp-admin/admin-ajax.php",
                     dataType: 'json',
                     data:data,
                     async:false,
@@ -160,9 +160,9 @@
             },30);
          });
       </script>
-      <script type="text/javascript">var ajaxurl = 'http://dev.plummarket.com/wp-admin/admin-ajax.php';</script><script type="text/javascript">
+      <script type="text/javascript">var ajaxurl = 'https://www.plummarket.com/wp-admin/admin-ajax.php';</script><script type="text/javascript">
          jQuery(document).ready(function($){
-            $('#wp-admin-bar-wp-logo > .ab-item .ab-icon').prepend('<img class="wlb-custom-header-logo" src="http://dev.plummarket.com/wp-content/uploads/2015/04/plummarketmini.png" />');
+            $('#wp-admin-bar-wp-logo > .ab-item .ab-icon').prepend('<img class="wlb-custom-header-logo" src="http://www.plummarket.com/wp-content/uploads/2015/04/plummarketmini.png" />');
             $('#wp-admin-bar-wp-logo > .ab-item .ab-icon').css('background-image','none');
             $('#wpadminbar .wlb-custom-header-logo')
                 .css('float','none')
@@ -193,7 +193,7 @@
          }
          });
       </script>
-      <script src="http://dev.plummarket.com/wp-content/themes/Avada/js/excanvas.js"></script>
+      <script src="https://www.plummarket.com/wp-content/themes/Avada/js/excanvas.js"></script>
       <![endif]-->
       <!--[if lte IE 9]>
       <script type="text/javascript">
@@ -1434,7 +1434,7 @@
          .rev_slider_wrapper .shadow-right{
          position:absolute;
          pointer-events:none;
-         background-image:url(http://dev.plummarket.com/wp-content/themes/Avada/images/shadow-bottom.png);
+         background-image:url(https://www.plummarket.com/wp-content/themes/Avada/images/shadow-bottom.png);
          background-repeat:no-repeat;
          background-position:bottom center;
          height:32px;
@@ -1532,15 +1532,15 @@
          }
          @font-face {
          font-family: MuseoSlab500;
-         src: url("<?php echo esc_url( get_template_directory_uri() ); ?>/css/Museo_Slab_500.otf") format("opentype");
+         src: url("css/fonts/Museo_Slab_500.otf") format("opentype");
          }
          @font-face {
          font-family: MuseoSlab300;
-         src: url("<?php echo esc_url( get_template_directory_uri() ); ?>/css/Museo_Slab_300.otf") format("opentype");
+         src: url("/wp-content/uploads/2015/04/Museo_Slab_300.otf") format("opentype");
          }
          @font-face {
          font-family: ChaletNewYork1960;
-         src: url("<?php echo esc_url( get_template_directory_uri() ); ?>/css/Chalet-NewYorkNineteenSixty.otf") format("opentype");
+         src: url("css/fonts/Chalet-NewYorkNineteenSixty.otf") format("opentype");
          }
          #nav, #sticky-nav, .navigation, .side-nav li a {
          font-family: "MuseoSlab500";
@@ -1601,12 +1601,20 @@
          }
          .woocommerce-invalid:after { content: 'Please enter correct details for this required field.'; display: inline-block; margin-top: 7px; color: red; }
       </style>
-      <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese' rel='stylesheet' type='text/css' />
-      <link href='http://fonts.googleapis.com/css?family=Antic+Slab:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese' rel='stylesheet' type='text/css' />
-      
-    <?php wp_head(); ?>
+      <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese' rel='stylesheet' type='text/css' />
+      <link href='https://fonts.googleapis.com/css?family=Antic+Slab:400,400italic,700,700italic:latin,greek-ext,cyrillic,latin-ext,greek,cyrillic-ext,vietnamese' rel='stylesheet' type='text/css' />
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         
+         ga('create', 'UA-11586341-1', 'auto');
+         ga('send', 'pageview');
+         
+      </script>
    </head>
-   <body class="page page-id-6334 page-template-default no-tablet-sticky-header no-mobile-sticky-header no-mobile-slidingbar no-mobile-totop layout-wide-mode mobile-menu-design-none" data-spy="scroll">
+   <body class="page page-id-302 page-template-default no-tablet-sticky-header no-mobile-sticky-header no-mobile-slidingbar no-mobile-totop layout-wide-mode mobile-menu-design-none" data-spy="scroll">
       <div id="wrapper" class="">
          <div class="header-wrapper">
             <div class="header-v4">
@@ -1614,12 +1622,12 @@
                   <div class="avada-row" style="padding-top:0px;padding-bottom:0px;">
                      <div class="logo-container">
                         <div class="logo" data-margin-right="0px" data-margin-left="0px" data-margin-top="0px" data-margin-bottom="0px" style="margin-right:0px;margin-top:0px;margin-left:0px;margin-bottom:0px;">
-                           <a href="http://dev.plummarket.com">
-                           <img src="http://dev.plummarket.com/wp-content/uploads/2015/10/white_lvwtresize-logo.png" alt="Plum Market" class="normal_logo" />
+                           <a href="https://www.plummarket.com">
+                           <img src="http://www.plummarket.com/wp-content/uploads/2015/10/white_lvwtresize-logo.png" alt="Plum Market" class="normal_logo" />
                            </a>
                         </div>
-                        <!-- <form role="search" class="search searchform" method="get" action="http://dev.plummarket.com/"> -->
-                        <form id="search-form" role="search" class="search searchform" method="get" action="http://dev.plummarket.com/store/search/?q=">
+                        <!-- <form role="search" class="search searchform" method="get" action="https://www.plummarket.com/"> -->
+                        <form id="search-form" role="search" class="search searchform" method="get" action="https://www.plummarket.com/store/search/?q=">
                            <div class="search-table">
                               <div class="search-field">
                                  <input type="text" placeholder="Search..." value="" id="search" name="q" class="s" />
@@ -1637,7 +1645,7 @@
                   <div class="avada-row">
                      <nav id="nav" class="nav-holder">
                         <ul class="navigation menu fusion-navbar-nav" style="overflow:hidden">
-                           <li id="menu-item-273" class="visible-xs menu-item menu-item-type-post_type menu-item-object-page menu-item-273"><a href="http://dev.plummarket.com/">Home</a></li>
+                           <li id="menu-item-273" class="visible-xs menu-item menu-item-type-post_type menu-item-object-page menu-item-273"><a href="https://www.plummarket.com/">Home</a></li>
                            <li id="menu-item-105" class="menuItem menu-item menu-item-type-custom menu-item-object-custom menu-item-105"><a href="/find-your-store">Find Your Store</a></li>
                            <li id="menu-item-93" class="menuItem menu-item menu-item-type-custom menu-item-object-custom menu-item-93"><a href="/find-your-store">In-Store Sales Flyer</a></li>
                            <li id="menu-item-92" class="menuItem menu-item menu-item-type-custom menu-item-object-custom menu-item-92"><a href="/find-your-store">Catering &#038; Kitchen Pre-Orders</a></li>
@@ -1648,7 +1656,7 @@
                         </ul>
                      </nav>
                      <div id="header-right" class="header-right">
-                        <a href="/store"><img title="Shop Online" src="http://dev.plummarket.com/wp-content/themes/Avada/images/shop_online.png"></a>
+                        <a href="/store"><img title="Shop Online" src="https://www.plummarket.com/wp-content/themes/Avada/images/shop_online.png"></a>
                      </div>
                   </div>
                </div>
@@ -1660,5 +1668,5 @@
          <div id="main" class="clearfix " style="">
             <div class="avada-row" style="">
                <div id="content" style="width:100%">
-                  <div id="post-6334" class="post-6334 page type-page status-publish hentry">
-                     <span class="entry-title" style="display: none;">delete me</span><span class="vcard" style="display: none;"><span class="fn"><a href="http://dev.plummarket.com/author/rewards-dev/" title="Posts by rewards-dev" rel="author">rewards-dev</a></span></span><span class="updated" style="display:none;">2017-02-15T02:00:39+00:00</span>       
+                  <div id="post-302" class="post-302 page type-page status-publish hentry">
+                     <span class="entry-title" style="display: none;">Careers</span><span class="vcard" style="display: none;"><span class="fn"><a href="https://www.plummarket.com/author/admin/" title="Posts by admin" rel="author">admin</a></span></span><span class="updated" style="display:none;">2017-01-06T18:20:48+00:00</span>   

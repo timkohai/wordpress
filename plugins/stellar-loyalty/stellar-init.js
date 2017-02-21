@@ -8,16 +8,16 @@
 // Define your Stellar environments
 window.stellarEnvironments = {
     'custom': {
-        'domains': ["www.plummarket.com", "plummarket.com"],
-        'config_url': '//config-custom.js'
+        'domains': ["www.plummarket.com", "plummarket.com", "dev.plummarket.com", "wordpress.dev"],
+        'config_url': 'https://s3.amazonaws.com/stellar-plum-et52jbwvll5pdiubfmzk/static_files/config-prod.js?1487222892'
+        // 'config_url': 'http://wordpress.dev/wp-content/plugins/stellar-loyalty/config-staging.js'
     },
-    'staging': { 
-        'domains': ["wordpress.com"],
-        'config_url': 'config-dev.js'
-    }, 
+    'staging': {
+        'domains': ["plum-staging-s3.demostellar.com"],
+        'config_url': 'https://s3.amazonaws.com/stellar-plum-staging-1be6mv2w1afxt33srboh/static_files/config-staging.js?1487223149'
+    },
     'production': {
-        // 'config_url': 'https://s3.amazonaws.com/stellar-plum-staging-1be6mv2w1afxt33srboh/static_files/config-staging.js?1486106114'
-        'config_url': 'http://wordpress.dev/wp-content/plugins/stellar-loyalty/config.js'
+        'config_url': 'https://s3.amazonaws.com/stellar-plum-et52jbwvll5pdiubfmzk/static_files/config-prod.js?1487222892'
     },
     'development': {
         'config_url': 'config-dev.js'
@@ -26,6 +26,7 @@ window.stellarEnvironments = {
         'config_url': 'config-qa.js'
     }
 };
+
 
 var stellar_default_settings = {
     static_page_path: '',
@@ -65,26 +66,51 @@ function memberProfileFields() {
     return fields;
 }
 
+function emailPreferencesFields() {
+  var fields = [];
+
+   fields.push({ attrib: "emailPreferences", source: "profile", label: "Email Preferences", editable: true,
+        fields: [{ attrib: "receive_rewards_cash_back_emails", source: "profile", label: "Receive Rewards Cash Back Email: {{value}}", type: 'checkbox' }, 
+        { attrib: "receive_event_emails", source: "profile", label: "Receive Event Email: {{value}}", type: 'checkbox' }, 
+        { attrib: "receive_promotional_emails", source: "profile", label: "Receive Promotional Email: {{value}}", type: 'dropdown'}]
+    });
+    return fields;
+}
+
 function punchcardsTemplate(item) {
     var percent = (item.punches / item.required_punches) * 100,
     desc = (item.heading ? item.heading : item.label);
-    var circle = '<div class="c100 p' + parseInt(percent) + '"><span class="sl-brandon sl-dark-gray">' + item.punches + '/' + item.required_punches + '</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div>';
     var expires = '<p class="item-expiration">Expires ' + Stellar.ui.formatters.USDateFormat(item.punchcard_type.expiration_date) + '</p>';
     expiration = (item.punchcard_type.expiration_type == 'none') ? '' : expires;
-    return '<div class="stl_content row punchcard-items">' +
-        '<div class="col-lg-4 col-xs-4 punchcard-required">' + circle + '</div>' +
-        '<div class="col-lg-8 col-xs-8 punchcard-content">' +
-        '<p class="item-description">' + desc + '</p>' + expiration +
-        '</div>' +
-        '</div>';
+    
+    return '<div class="stl_content">'+
+        '<div class="col-sm-4 col-xs-3 circle-canvas">'+
+            '<div class="punchcard-circle-container">'+
+                '<canvas class="punchcard-circle-canvas" data-percent="'+ percent +'"></canvas>'+
+                '<div class="punchcard-circle-content">'+
+                    '<span class="points">'+ item.punches + '/' + item.required_punches +'</span>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+        '<div class="col-sm-8 col-xs-9 circle-content">'+
+            '<div class="punchcard-desc">'+ desc +'</div>'+ expiration +
+        '</div>'+
+    '<div>';
 }
 
 function punchcardsHandler(item) {
     var percent = (item.punches / item.required_punches) * 100,
     desc = (item.description ? item.description : item.label);
-    var circle = '<div class="c100 p' + parseInt(percent) + '"><span class="sl-brandon sl-dark-gray">' + item.punches + '/' + item.required_punches + '</span><div class="slice"><div class="bar"></div><div class="fill"></div></div></div>';
     var expires = '<p class="item-expiration">Expires ' + Stellar.ui.formatters.USDateFormat(item.punchcard_type.expiration_date) + '</p>';
     expiration = (item.punchcard_type.expiration_type == 'none') ? '' : expires;
+    
+    var circle = '<div class="punchcard-circle-container">'+
+                '<canvas class="punchcard-circle-canvas" data-percent="'+ percent +'"></canvas>'+
+                '<div class="punchcard-circle-content">'+
+                    '<span class="points">'+ item.punches + '/' + item.required_punches +'</span>'+
+                '</div>'+
+            '</div>';    
+
     var body = '<div class="punchcard-items">' +
         '<div class="punchcard-required">' + circle + '</div>' +
         '<div class="punchcard-content">' +
@@ -99,7 +125,13 @@ function punchcardsHandler(item) {
     Stellar.ui.openPopup({
       type: 'punchcard-details',
       title: "<h2>"+(item.description || "Rewards Circle")+"</h2>",
-      body: body
+      body: body,
+      callbacks: {
+        open: function() {
+            var elem = $j.magnificPopup.instance.content.find('.punchcard-circle-canvas')[0]
+            punchcardProgressBar(elem);
+        }
+      }
     });
 }
 
@@ -149,7 +181,7 @@ function newsfeedTemplate(item) {
 }
 
 function couponsTemplate(data) {
-    $('.sl-empty-coupons').hide();
+    jQuery('.sl-empty-coupons').hide();
     var tmpl, expiration = '';
 
     if( data.end_date ) {
@@ -176,7 +208,7 @@ function couponsTemplate(data) {
             .replace('clip-item', 'clip-item' + data.id);
     }
 
-    tmpl = $(tmpl).find('.stl_details').html(Stellar.util.truncateString(data.details, 100)).end().prop('outerHTML');
+    tmpl = jQuery(tmpl).find('.stl_details').html(Stellar.util.truncateString(data.details, 100)).end().prop('outerHTML');
 
     tmpl = tmpl.replace('<div class="expiration"></div>', '<div class="expiration">'+expiration+'</div>');
     return tmpl;
@@ -187,20 +219,21 @@ function activatedTemplate(data) {
     if (data.processing_status == "cancelled") {
         return;
     } else {
-        $('.sl-empty-activated').hide();
+        jQuery('.sl-empty-activated').hide();
         var offer = data.offer,
-            clip = (data.processing_status == "pending") ? 'clip' : 'unclip';
-        tmpl = '<div class="row coupon-item stl_content">' +
+            isClip = (data.processing_status == "pending") ? 'clip' : 'unclip';
+
+        var tmpl = '<div class="row coupon-item stl_content">' +
             '<div class="coupon-image col-lg-3 col-md-3 col-sm-3 col-xs-3">' +
             '<img src="' + offer.image_url + '">' +
             '</div>' +
             '<div class="coupon-content col-lg-7 col-md-7 col-sm-7 col-xs-7">' +
-            '<p class="sl-brandon sl-mid-blue sl-medium">rewards ' + offer.type + '</p>' +
-            '<p class="item-description sl-chalet sl-dark-blue">' + offer.heading + '</p>' +
+            '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.heading + '</p>' +
+            '<p class="item-description sl-chalet sl-dark-blue">' + offer.subheading + '</p>' +
             '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
             '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
             '</div><div class="col-lg-2 col-md-2 col-sm-2  col-xs-2">' +
-            '<div class="clip-item' + data.id + '"><button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');"><img class="slclip' + data.id + '" src="'+settings.static_page_path+'images/' + clip + '.png"></button></div>' +
+            '<div class="clip-item '+ isClip +'" onclick="checkClipCoupon(this,event,'+data.id+')"></div>';
             '</div>';
     }
 
@@ -208,6 +241,7 @@ function activatedTemplate(data) {
 }
 
 function couponsCustomHandler(data) {
+    var clip = !data.is_clipped ? 'plus' : 'minus';
     var tmpl = '<div class="row">' +
             '<div class="coupon-image col-md-4 col-md-offset-4">' +
             '<img src="' + data.image_url + '">' +
@@ -218,8 +252,7 @@ function couponsCustomHandler(data) {
             '<p class="sl-brandon sl-mid-blue sl-medium">' + data.body + '</p>' +
             '<p class="sl-chalet sl-black">' + data.details + '</p>' +
             '</div><div>' +
-            '<div class="clip-item' + data.id + '"> ' +
-            // '<button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');">'+clipText+'</button></div>' +
+            '<div class="clip-item" data-element-type="offer" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clip+'"></spa></div>' +
             '</div>';
 
     Stellar.ui.openPopup({
@@ -232,8 +265,9 @@ function couponsCustomHandler(data) {
 
 function couponsEarnedCustomHandler(data) {
     var offer = data.offer,
-            clip = (data.processing_status == "pending") ? 'clip' : 'unclip';
-    var clipText = (data.processing_status == "pending") ? '+' : '-';
+        clip = (data.processing_status == "pending") ? 'plus' : 'minus';
+        clipClass = (data.processing_status == "pending") ? 'clip' : 'unclip';
+    // var clipText = (data.processing_status == "pending") ? '+' : '-';
     var tmpl = '<div class="row">' +
             '<div class="coupon-image col-md-4 col-md-offset-4">' +
             '<img src="' + offer.image_url + '">' +
@@ -244,8 +278,7 @@ function couponsEarnedCustomHandler(data) {
             '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
             '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
             '</div><div>' +
-            '<div class="clip-item' + data.id + '"> ' +
-            // '<button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');">'+clipText+'</button></div>' +
+            '<div class="clip-item '+clipClass+'" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clip+'"></spa></div>' +
             '</div>';
 
     Stellar.ui.openPopup({
@@ -256,10 +289,8 @@ function couponsEarnedCustomHandler(data) {
 }
 
 function couponsClipCustomHandler(data) {
-    
     var offer = data.offer,
-            clip = (data.processing_status == "pending") ? 'clip' : 'unclip';
-    var clipText = (data.processing_status == "pending") ? '+' : '-';
+        clip = (data.processing_status == "pending") ? 'plus' : 'minus';
 
     if( offer.end_date ) {
         var date1 = new Date(offer.end_date); 
@@ -287,9 +318,7 @@ function couponsClipCustomHandler(data) {
             '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
             '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
             '<div class="expiration">'+expiration+'</div>'+
-            '</div><div>' +
-            '<div class="clip-item' + data.id + '"> ' +
-            // '<button class="sl-clipbtn" onclick="' + clip + 'Coupon(event,' + data.id + ');">'+clipText+'</button></div>' +
+            '<div class="clip-item" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clip+'"></spa></div>' +
             '</div>';
 
     Stellar.ui.openPopup({
@@ -300,19 +329,19 @@ function couponsClipCustomHandler(data) {
 }
 
 function clippedTemplate(data) {
-    $('.sl-empty-clipped').hide();
+    jQuery('.sl-empty-clipped').hide();
     var offer = data.offer,
         tmpl = '<div class="row coupon-item stl_content">' +
         '<div class="coupon-image col-lg-3 col-md-3 col-sm-3 col-xs-3">' +
         '<img src="' + offer.image_url + '">' +
         '</div>' +
         '<div class="coupon-content col-lg-7 col-md-7 col-sm-7 col-xs-7">' +
-        '<p class="sl-brandon sl-mid-blue sl-medium">rewards ' + offer.type + '</p>' +
-        '<p class="item-description sl-chalet sl-dark-blue">' + offer.heading + '</p>' +
+        '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.heading + '</p>' +
+        '<p class="item-description sl-chalet sl-dark-blue">' + offer.subheading + '</p>' +
         '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
         '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
         '</div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">' +
-        '<div class="clip-item' + data.id + '"><button class="sl-clipbtn" onclick="unclipCoupon(event,' + data.id + ');"><img class="slclip' + data.id + '" src="'+settings.static_page_path+'images/unclip.png"></button></div>' +
+        '<div class="clip-item unclip" onclick="checkClipCoupon(this,event,'+data.id+')"></div>';
         '</div>';
 
     return tmpl;
@@ -325,11 +354,20 @@ function activitiesTemplate(data) {
     if (data.label) {
         reward = " : " + data.label;
     }
-    return '<div class="row stl_content sl-activity">' +
-        '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 sl-brandon sl-white sl-left"><span class="black-circle">' + parseInt(data.metric_amount) + '</span></div>' +
-        '<div class="col-lg-8 col-md-8 col-sm-8 sl-brandon-black col-xs-7 sl-mid-blue sl-small sl-left activity-details" style="padding-top: 10px">' + data.display_activity + reward + ' </div>' +
-        '<div class="col-lg-3 col-md-3 col-sm-3 sl-left sl-black col-xs-3 activity-date" style="padding-top: 10px">' + Stellar.ui.formatters.slashFormat(data.activity_ts) + '</div>' +
-        '</div>';
+    var date = Stellar.ui.formatters.slashFormat(data.activity_ts);
+
+    var html = '<li class="stl_content">'+
+        '<div class="points">'+
+            '<div>'+ parseInt(data.metric_amount) +'</div>'+
+        '</div>'+
+        '<div class="description">'+
+            '<div class="heading">' + data.display_activity + reward + '</div>'+
+            '<div class="date">' + date +'</div>'+
+        '</div>'+
+        '<div class="date"><div>' + date + '</div></div>'+
+    '</li>';
+
+    return html;
 }
 
 function limitResponse(response){
@@ -346,7 +384,7 @@ function limitResponse(response){
 }
 
 function clipCoupon(event, id) {
-    $('.clip-item' + id).hide().addClass('stellar-loader');
+    jQuery('.clip-item' + id).hide().addClass('stellar-loader');
     var btn = "unclipCoupon(event," + id + ")";
     Stellar.api.callClipItem({
         id: id,
@@ -358,7 +396,7 @@ function clipCoupon(event, id) {
 }
 
 function unclipCoupon(event, id) {
-    $('.clip-item' + id).empty().addClass('stellar-loader');
+    jQuery('.clip-item' + id).empty().addClass('stellar-loader');
     var btn = "clipCoupon(event," + id + ")";
     Stellar.api.callClipItem({
         id: id,
@@ -371,7 +409,7 @@ function unclipCoupon(event, id) {
 }
 
 function clipOffer(event, id) {
-    $('.clip-item' + id).empty().addClass('stellar-loader');
+    jQuery('.clip-item' + id).empty().addClass('stellar-loader');
     var btn = "unclipCoupon(event," + id + ")";
     Stellar.api.callClipItem({
         id: id,
@@ -382,7 +420,7 @@ function clipOffer(event, id) {
 }
 
 function unclipOffer(event, id) {
-    $('.clip-item' + id).empty().addClass('stellar-loader');
+    jQuery('.clip-item' + id).empty().addClass('stellar-loader');
     var btn = "clipCoupon(event," + id + ")";
     Stellar.api.callClipItem({
         id: id,
@@ -425,19 +463,33 @@ function rewardResponseTemplate(item) {
 
 window.runStellar = function() {
     window.stellarConfig.allowCrossDomain = true;
-    $ = jQuery.noConflict();  
+    $rs = jQuery.noConflict();
+
+    $rs('.stellar-nav-icon').on('click keypress', function() {
+        jQuery('.sl-navigation').slideToggle();
+    });
 };
 
 window.stellarReady = function () {
+    // jQuery no conflict
+    $j = jQuery.noConflict();
+
+
+    $j('.logout-link').on('click', function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        Stellar.logout();
+    });
+
      var homePage =  settings.landing_page,
         signupPage = settings.signup_page,
         txt_forgot_password = /[f|F](orgot)/ig,
         txt_reset_password = /[r|R](eset)/ig,
         forgotPasswordPage = document.location.href.search(txt_forgot_password) !== -1 ? true : false,
         resetPasswordPage = document.location.href.search(txt_reset_password) !== -1 ? true : false,
-        forgot_btn = $('.stellar-forgot-password');
+        forgot_btn = $j('.stellar-forgot-password');
         connected = function () {
-            return $('.stellar-connected').length;
+            return $j('.stellar-connected').length;
         };
 
     var login = Stellar.getLoginStatus();
@@ -452,7 +504,7 @@ window.stellarReady = function () {
         },
         form: function(txt) { 
             var str = PlumMarket.regexTransform(txt);
-            return $('form#'+ str +'-form');
+            return $j('form#'+ str +'-form');
         },
         regexTransform: function(v) {
             var regexp = /[_]/ig;
@@ -470,7 +522,7 @@ window.stellarReady = function () {
             var isValidPassword = (d.password === d.password_confirmation) ? true : false ;
             if (d.password !== '' && d.password_confirmation !== '') {
                 if (!isValidPassword) {
-                    return $(".error-message").show().html(self.label.error_password);
+                    return $j(".error-message").show().html(self.label.error_password);
                 }
                 return {
                     reset_password_token: d.reset_password_token,
@@ -483,7 +535,7 @@ window.stellarReady = function () {
             e.preventDefault();
             var self = this,
                 f = form,
-                value = $('#email').val(),
+                value = $j('#email').val(),
                 email_value = PlumMarket.emailValidate(value);
 
             f.find('.error-message').html('').fadeOut();
@@ -588,37 +640,33 @@ window.stellarReady = function () {
     });
 
     Stellar.events.bind('contentTokens.loaded', function () {
-        if ($('.stellar-home-page').length) {
+        if ($j('.stellar-home-page').length) {
             var points = parseInt(Stellar.member.summary.metrics.point.balance);
-            var len = (points.toString().length);
-
-            if( len == 1 ){
-                $('.stl_token_points').css("padding-left","55px");
-            } else if (len==2){
-                $('.stl_token_points').css("padding-left","25px");
-            }
-            var percentage = (points / 500);
-            // $("#slbar").attr("data-percent", parseInt(percentage));
-            $('.second.circle').circleProgress({
-                value: percentage,
-                size: 350,
-                fill: {
-                    gradient: ["#3B4C61", "#A0DADF"]
-                },
-                startAngle: 4.8,
-                thickness: 30,
-                emptyFill: "#ffffff"
+            var percentage = (points / 500) * 100;
+            var elem = document.querySelector('.rewards-circle-canvas');
+            punchcardProgressBar(elem, {
+                percent: percentage,
+                innerR: 56,
+                colorStart: '#e0fcff',
+                colorEnd: '#A0DADF'
             });
-            $('.stl_token_points').text(points);
+            $j('.stl_token_points').text(points);
         }
     });
 
     Stellar.events.bind('rewardsResponses.loaded', function(response) {
-        $('.rewards-count-circle-main').html(response.length || 0);
+        $j('.activated-rewards-count').html(response.length || 0);
     });
 
     Stellar.events.bind('rewards.loaded', function(response) {
-        $('.reward-body').html(response[0].body);
+        $j('.reward-body').html(response[0].body);
+    });
+
+    Stellar.events.bind('punchcards.loaded', function(response) {
+        var elem = document.querySelectorAll('.punchcard-circle-canvas');
+        for (var i = 0; i < elem.length; i++) {
+            punchcardProgressBar(elem[i]);
+        }
     });
 
     // Plum Market Forgot/Reset Password Page
@@ -626,32 +674,28 @@ window.stellarReady = function () {
         PlumMarket.init({ isForgot: forgotPasswordPage, isReset: resetPasswordPage });
     }
 
-    if ($('.stellar-signup-page, .stellar-forgot-password-page, .stellar-reset-password-page').length) {
-        $('.stellar-signup-page, .stellar-forgot-password-page, .stellar-reset-password-page').closest('.container-main').css('background-color', '#000').css('padding', '0px');    
-    }
-
-    $('ul.tabs').each(function () {
-        var $active, $content, $links = $(this).find('a');
-        $active = $($links.filter('[href="' + location.hash + '"]')[0] || $links[0]);
+    $j('ul.tabs').each(function () {
+        var $active, $content, $links = $j(this).find('a');
+        $active = $j($links.filter('[href="' + location.hash + '"]')[0] || $links[0]);
         $active.addClass('active');
-        $content = $($active[0].hash);
+        $content = $j($active[0].hash);
         $links.not($active).each(function () {
-            $(this.hash).hide();
+            $j(this.hash).hide();
         });
-        $(this).on('click', 'a', function (e) {
+        $j(this).on('click', 'a', function (e) {
             $active.removeClass('active');
             $content.hide();
-            $active = $(this);
-            $content = $(this.hash);
+            $active = $j(this);
+            $content = $j(this.hash);
             $active.addClass('active');
             $content.show();
             e.preventDefault();
         });
     });
 
-    $('.rewards-information').on('click', function (e) {
+    $j('.rewards-more-info').on('click', function (e) {
         if (Stellar.member.rewardsResponses === 'undefined') { return }
-        var rewardResponses = $('.stellar-rewards-responses');
+        var rewardResponses = $j('.stellar-rewards-responses');
         var count = rewardResponses.children().length;
 
         var body = '<h1 style="padding-top: 20px;" class="reward-info sl-gold sl-brandon sl-center">You’ve activated '+
@@ -666,8 +710,48 @@ window.stellarReady = function () {
         e.preventDefault();
     });
 
-};
+}; // end of stellarReady
 
+function punchcardProgressBar(elem, options) {
+    options = options || {};
+    var percent = options.percent || elem.getAttribute('data-percent');
+    new DoughnutProgressBar({
+        element: elem,
+        innerR: options.innerR || 55,
+        outerR: 70,
+        colorStart: options.colorStart || '#e0fcff',
+        colorEnd: options.colorEnd || '#A0DADF',
+        fillColor: '#fff',
+        percentage: 0,
+        duration: options.duration || 600
+    }).setPercentage(percent);
+}
+
+
+function checkClipCoupon(elem, e, id) {
+    // check if clipped or not
+    var clip = $j(elem).hasClass('clip') ? true : false;
+
+    $j(elem).removeClass('unclip clip'); 
+    $j(elem).addClass('stellar-loader');
+    $j(elem).html('');
+    var isCoupon = $j(elem).data('element-type') ? true : false;
+    if(isCoupon) {
+        $j(elem).removeClass('stellar-loader');
+        $j('<span class="fa fa-spin fa-spinner"></span>').appendTo($(elem));
+    }
+    Stellar.api.callClipItem({
+        id: id,
+        _method: clip ? 'POST' : 'DELETE',
+        endpoint: isCoupon ? 'offers' : 'offers/responses'
+    }, function (response) {
+        setTimeout(function() {
+            $j('.mfp-close.stellar-btn-close').trigger('click');
+        }, 1000);
+        limitResponse(response);
+    });
+    e.stopPropagation();
+}
 
 
 //////////////////////////////////////////

@@ -1591,7 +1591,7 @@ nav#sticky-nav {
 #nav .fusion-navbar-nav .fusion-dropdown-menu,
 #sticky-nav .fusion-navbar-nav .fusion-dropdown-menu
 {
-	overflow:hidden;
+  overflow:hidden;
 }
 */
 #nav .fusion-megamenu-menu .sub-menu,
@@ -3828,10 +3828,10 @@ body #wrapper .gomapMarker {
 .wpcf7-form input.button.large,
 .bbp-submit-wrapper .button.large,
 .gform_wrapper .gform_button.large {
-	font-family: 'PTSansBold', arial, helvetica, sans-serif;
-	text-transform: uppercase;
-	text-align: center;
-	padding: 0 30px;
+  font-family: 'PTSansBold', arial, helvetica, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 30px;
 }
 .button.small,
 .button-small,
@@ -3842,10 +3842,10 @@ body #wrapper .gomapMarker {
 .price_slider_amount button,
 .bbp-submit-wrapper .button,
 .gform_wrapper .gform_button {
-	font-family: 'PTSansBold', arial, helvetica, sans-serif;
-	text-transform: uppercase;
-	text-align: center;
-	padding: 0 20px;
+  font-family: 'PTSansBold', arial, helvetica, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0 20px;
 }*/
 .button.buttonshadow-yes {
   text-shadow: 0 1px 0 #fff;
@@ -5715,11 +5715,11 @@ body .portfolio-grid {
 /*
 .has-sidebar .products-4 .product-buttons .button,
 .has-sidebar .products-4 .product-buttons .show_details_button {
-	width: 36%;
+  width: 36%;
 }
 .has-sidebar .products-4 .product-buttons .show_details_button {
-	width: auto;
-	max-width: 36%;
+  width: auto;
+  max-width: 36%;
 }
 */
 .product-buttons .button {
@@ -7615,41 +7615,41 @@ p.demo_store {
 }
 /*
 input[type="text"] {
-	margin: 0;
-	padding: 8px 10px;
-	height: auto;
-	width: 100%;
-	outline: none;
-	background: #fff;
-	border: 1px solid #dadada;
-	font-size: 13px;
-	color: #747474;
-	.box-shadow( inset 0 1px 5px rgba(0, 0, 0, 0.1) );
-	.border-radius( 0 );
+  margin: 0;
+  padding: 8px 10px;
+  height: auto;
+  width: 100%;
+  outline: none;
+  background: #fff;
+  border: 1px solid #dadada;
+  font-size: 13px;
+  color: #747474;
+  .box-shadow( inset 0 1px 5px rgba(0, 0, 0, 0.1) );
+  .border-radius( 0 );
 }
 
 select {
-	display: block;
-	-webkit-appearance: none;
-	margin: 0;
-	padding: 8px 10px;
-	height: auto;
-	width: 100%;
-	outline: none;
-	background: #fff;
-	border: 1px solid #dadada;
-	font-size: 13px;
-	color: #747474;
-	cursor: pointer;
-	.box-shadow( inset 0 1px 5px rgba(0, 0, 0, 0.1) );
-	.border-radius( 0 );
+  display: block;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 8px 10px;
+  height: auto;
+  width: 100%;
+  outline: none;
+  background: #fff;
+  border: 1px solid #dadada;
+  font-size: 13px;
+  color: #747474;
+  cursor: pointer;
+  .box-shadow( inset 0 1px 5px rgba(0, 0, 0, 0.1) );
+  .border-radius( 0 );
 }
 
 .woocommerce {
-	select {
-		padding: 8px 15px;
-		text-indent: 0;
-	}
+  select {
+    padding: 8px 15px;
+    text-indent: 0;
+  }
 }
 
 */
@@ -11801,8 +11801,8 @@ h3.fusion-megamenu-title {
 }
 .ua-mobile .tfs-slider .mobile_video_image {
   /*position: absolute;
-		top: 0;
-		left: 0;*/
+    top: 0;
+    left: 0;*/
   width: 100%;
   height: 100%;
   display: block;

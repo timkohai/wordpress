@@ -9,8 +9,7 @@
  * @since Twenty Fifteen 1.0
  */
 ?>
-
-                  </div>
+</div>
                </div>
             </div>
          </div>
@@ -198,7 +197,7 @@
          </div>
          <div class="menu-main-navigation-container">
             <ul id="menu-main-navigation-1" class="responsive-menu">
-               <li class="visible-xs menu-item menu-item-type-post_type menu-item-object-page menu-item-273"><a href="http://dev.plummarket.com/">Home</a></li>
+               <li class="visible-xs menu-item menu-item-type-post_type menu-item-object-page menu-item-273"><a href="https://www.plummarket.com/">Home</a></li>
                <li class="menuItem menu-item menu-item-type-custom menu-item-object-custom menu-item-105"><a href="/find-your-store">Find Your Store</a></li>
                <li class="menuItem menu-item menu-item-type-custom menu-item-object-custom menu-item-93"><a href="/find-your-store">In-Store Sales Flyer</a></li>
                <li class="menuItem menu-item menu-item-type-custom menu-item-object-custom menu-item-92"><a href="/find-your-store">Catering &#038; Kitchen Pre-Orders</a></li>
@@ -208,7 +207,7 @@
                <li class="visible-xs-block menu-item menu-item-type-custom menu-item-object-custom menu-item-440"><a href="/store">Shop Online</a></li>
             </ul>
          </div>
-         <form action="http://dev.plummarket.com" id="responsiveSearch" method="get" role="search">
+         <form action="https://www.plummarket.com" id="responsiveSearch" method="get" role="search">
             <input type="search" name="s" value="" placeholder="Search" id="responsiveSearchInput">
             <input type="submit" id="responsiveSearchSubmit" />
          </form>
@@ -248,38 +247,56 @@
          
          });
       </script>
-      <link rel='stylesheet' id='popup-maker-site-css'  href='http://dev.plummarket.com/wp-content/plugins/popup-maker/assets/styles/popup-maker-site.min.css?ver=1.2.2' type='text/css' media='all' />
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/modernizr-min.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/jquery.carouFredSel-6.2.1-min.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/store/js/prototype/prototype.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/jquery.cycle.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/jquery.prettyPhoto-min.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/jquery.flexslider-min.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/jquery.fitvids-min.js?ver=3.7.2'></script>
+      <link rel='stylesheet' id='popup-maker-site-css'  href='https://www.plummarket.com/wp-content/plugins/popup-maker/assets/styles/popup-maker-site.min.css?ver=1.2.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='mediaelement-css'  href='https://www.plummarket.com/wp-includes/js/mediaelement/mediaelementplayer.min.css?ver=2.16.2' type='text/css' media='all' />
+      <link rel='stylesheet' id='wp-mediaelement-css'  href='https://www.plummarket.com/wp-includes/js/mediaelement/wp-mediaelement.css?ver=4.2.3' type='text/css' media='all' />
+
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/modernizr-min.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/jquery.carouFredSel-6.2.1-min.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/store/js/prototype/prototype.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/jquery.cycle.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/jquery.prettyPhoto-min.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/jquery.flexslider-min.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/jquery.fitvids-min.js?ver=3.7.2'></script>
       <script type='text/javascript'>
          /* <![CDATA[ */
-         var js_local_vars = {"protocol":"","theme_url":"http:\/\/dev.plummarket.com\/wp-content\/themes\/Avada","dropdown_goto":"Go to...","mobile_nav_cart":"Shopping Cart","page_smoothHeight":"false","flex_smoothHeight":"false","language_flag":"","infinite_blog_finished_msg":"<em>All posts displayed.<\/em>","infinite_finished_msg":"<em>All items displayed.<\/em>","infinite_blog_text":"<em>Loading the next set of posts...<\/em>","portfolio_loading_text":"<em>Loading Portfolio Items...<\/em>","faqs_loading_text":"<em>Loading FAQ Items...<\/em>","order_actions":"Details","avada_rev_styles":"1","avada_styles_dropdowns":"0","blog_grid_column_spacing":"40","blog_pagination_type":"Pagination","custom_icon_image_retina":"","disable_mobile_animate_css":"1","portfolio_pagination_type":"Pagination","header_position":"Top","header_sticky":"0","ipad_potrait":"0","is_responsive":"1","layout_mode":"wide","lightbox_animation_speed":"Fast","lightbox_autoplay":"0","lightbox_desc":"1","lightbox_deeplinking":"1","lightbox_gallery":"1","lightbox_opacity":"0.8","lightbox_post_images":"1","lightbox_slideshow_speed":"5000","lightbox_social":"1","lightbox_title":"1","logo_alignment":"Left","megamenu_max_width":"1100px","pagination_video_slide":"0","retina_icon_height":"","retina_icon_width":"","submenu_slideout":"1","sidenav_behavior":"Hover","site_width":"1100px","slideshow_autoplay":"1","slideshow_speed":"7000","status_lightbox_mobile":"1","status_totop_mobile":"0","status_vimeo":"0","status_yt":"0","testimonials_speed":"4000","tfes_animation":"sides","tfes_autoplay":"1","tfes_interval":"3000","tfes_speed":"800","tfes_width":"150","woocommerce_shop_page_columns":"4","mobile_menu_design":"none","isotope_type":"masonry","page_title_fading":"0"};
+         var js_local_vars = {"protocol":"1","theme_url":"https:\/\/www.plummarket.com\/wp-content\/themes\/Avada","dropdown_goto":"Go to...","mobile_nav_cart":"Shopping Cart","page_smoothHeight":"false","flex_smoothHeight":"false","language_flag":"","infinite_blog_finished_msg":"<em>All posts displayed.<\/em>","infinite_finished_msg":"<em>All items displayed.<\/em>","infinite_blog_text":"<em>Loading the next set of posts...<\/em>","portfolio_loading_text":"<em>Loading Portfolio Items...<\/em>","faqs_loading_text":"<em>Loading FAQ Items...<\/em>","order_actions":"Details","avada_rev_styles":"1","avada_styles_dropdowns":"0","blog_grid_column_spacing":"40","blog_pagination_type":"Pagination","custom_icon_image_retina":"","disable_mobile_animate_css":"1","portfolio_pagination_type":"Pagination","header_position":"Top","header_sticky":"0","ipad_potrait":"0","is_responsive":"1","layout_mode":"wide","lightbox_animation_speed":"Fast","lightbox_autoplay":"0","lightbox_desc":"1","lightbox_deeplinking":"1","lightbox_gallery":"1","lightbox_opacity":"0.8","lightbox_post_images":"1","lightbox_slideshow_speed":"5000","lightbox_social":"1","lightbox_title":"1","logo_alignment":"Left","megamenu_max_width":"1100px","pagination_video_slide":"0","retina_icon_height":"","retina_icon_width":"","submenu_slideout":"1","sidenav_behavior":"Hover","site_width":"1100px","slideshow_autoplay":"1","slideshow_speed":"7000","status_lightbox_mobile":"1","status_totop_mobile":"0","status_vimeo":"0","status_yt":"0","testimonials_speed":"4000","tfes_animation":"sides","tfes_autoplay":"1","tfes_interval":"3000","tfes_speed":"800","tfes_width":"150","woocommerce_shop_page_columns":"4","mobile_menu_design":"none","isotope_type":"masonry","page_title_fading":"0"};
          /* ]]> */
       </script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/main.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/jquery.cookie.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/store/js/solrsearch/autocomplete.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/themes/Avada/js/ut.js?ver=3.7.2'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/main.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/jquery.cookie.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/store/js/solrsearch/autocomplete.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/themes/Avada/js/ut.js?ver=3.7.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4'></script>
       <script type='text/javascript'>
          /* <![CDATA[ */
-         var ajaxurl = "http:\/\/dev.plummarket.com\/wp-admin\/admin-ajax.php";
+         var ajaxurl = "https:\/\/www.plummarket.com\/wp-admin\/admin-ajax.php";
          var popmake_default_theme = "65";
          var popmake_themes = [];
          popmake_themes = {"65":{"overlay":{"background_color":"#262626","background_opacity":"85"},"container":{"padding":"18","background_color":"#f9f9f9","background_opacity":"100","border_style":"none","border_color":"#000000","border_width":"1","border_radius":"2","boxshadow_inset":"no","boxshadow_horizontal":"1","boxshadow_vertical":"1","boxshadow_blur":"3","boxshadow_spread":"0","boxshadow_color":"#020202","boxshadow_opacity":"23"},"title":{"font_color":"#9a1e5a","line_height":"13","font_size":"12","font_family":"inherit","font_weight":"900","font_style":"normal","font_align":"left","textshadow_horizontal":"0","textshadow_vertical":"0","textshadow_blur":"0","textshadow_color":"#020202","textshadow_opacity":"23","text_align":"left"},"content":{"font_color":"#565656","font_family":"inherit","font_weight":"normal","font_style":"normal"},"close":{"text":"CLOSE","location":"topright","position_top":"0","position_left":"0","position_bottom":"0","position_right":"0","padding":"5","background_color":"#9a1e5a","background_opacity":"100","font_color":"#ffffff","line_height":"14","font_size":"11","font_family":"inherit","font_weight":"normal","font_style":"normal","border_style":"none","border_color":"#ffffff","border_width":"1","border_radius":"0","boxshadow_inset":"no","boxshadow_horizontal":"0","boxshadow_vertical":"0","boxshadow_blur":"0","boxshadow_spread":"0","boxshadow_color":"#020202","boxshadow_opacity":"23","textshadow_horizontal":"0","textshadow_vertical":"0","textshadow_blur":"0","textshadow_color":"#000000","textshadow_opacity":"23"}}};;
          /* ]]> */
       </script>
-      <script type='text/javascript' src='http://dev.plummarket.com/wp-content/plugins/popup-maker/assets/scripts/popup-maker-site.min.js?defer&#038;ver=1.2.2' defer='defer'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-content/plugins/popup-maker/assets/scripts/popup-maker-site.min.js?defer&#038;ver=1.2.2' defer='defer'></script>
+      <script type='text/javascript'>
+         /* <![CDATA[ */
+         var mejsL10n = {"language":"en-US","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};
+         var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};
+         /* ]]> */
+      </script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=2.16.2'></script>
+      <script type='text/javascript' src='https://www.plummarket.com/wp-includes/js/mediaelement/wp-mediaelement.js?ver=4.2.3'></script>
+
+      <?php wp_footer(); ?>
+      <!-- Stellar init -->
+      <!-- <link rel="stylesheet" href="css/custom.css"> -->
+      <!-- <script src="stellar-init.js"></script> -->
+      <!-- end -->
+
+   
+
       <!--[if lte IE 8]>
-      <script type="text/javascript" src="http://dev.plummarket.com/wp-content/themes/Avada/js/respond.js"></script>
+      <script type="text/javascript" src="https://www.plummarket.com/wp-content/themes/Avada/js/respond.js"></script>
       <![endif]-->
-      
-<?php wp_footer(); ?>
    </body>
 </html>
