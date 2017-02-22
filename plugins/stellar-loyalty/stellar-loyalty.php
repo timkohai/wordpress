@@ -129,22 +129,22 @@ function stellar_login($attr, $content) {
 	                <div class="notifications">
 	                    <div class="stellar-signup-notification"></div>
 	                </div>
-	                <div>
+	                <div class="form-group">
 	                    <input class="form-field" type="text"  name="first_name" title="First Name" sl-message-required="Please enter First Name!" sl-validation="required"  placeholder="First Name" />
 	                </div>
-	                <div>
+	                <div class="form-group">
 	                    <input class="form-field" type="text" name="last_name" title="Last Name" sl-message-required="Please enter Last Name!"sl-validation="required" placeholder="Last Name"/>
 	                </div>
-	                <div>
+	                <div class="form-group">
 	                    <input class="form-field" type="text" name="email" title="Email"sl-message-required="Please enter Email!"sl-message-email="Please enter valid Email!"sl-validation="required,email" placeholder="Email"/>
 	                </div> 
-	                <div>
+	                <div class="form-group">
 	                    <input type="text" name="mobile_phone" class="form-field mobile_phone" title="Phone Number" sl-message-required="Please enter Phone Number!" sl-validation="required" placeholder="Phone Number">
 	                </div> 
-	                <div>
+	                <div class="form-group">
 	                    <input class="form-field" type="password" name="password" title="Password" sl-message-required="Please enter Password!"sl-validation="required" placeholder="Password"/>
 	                </div>
-	                <div>
+	                <div class="form-group">
 	                    <input class="form-field" type="password" name="password_confirmation"title="Confirm Password"sl-message-required="Please enter Confirm Password!"sl-message-equalTo="Confirm Password doesn\'t match Password."sl-validation="required, equalTo[password]" placeholder="Confirm Password"/>
 	                </div>
 	                <button class="stellar-register-button">SIGN UP</button>
@@ -224,6 +224,7 @@ function rewards_reset_password_page($attr, $content) {
             </div>
             <h1 class="stellar-login-header sl-brandon sl-white sl-xxlarge">Reset Password</h1>
 			<div class="login-wrapper">
+				<div class="col-md-4 col-md-offset-4">
 			    <form id="reset-password-form" method="post" novalidate>
 			        <div class="notification">
 			            <p class="error-message" style="display: none;"></p>
@@ -236,11 +237,18 @@ function rewards_reset_password_page($attr, $content) {
 			            </p>
 			        </div>
 			        <div class="form-group password">
+			        	<div class="form-group">
 			            <input id="password" class="form-field text-center" type="password" name="password" title="New Password" placeholder="New Password" sl-validation="required">
+			            </div>
+			            <div class="form-group">
 			            <input id="password_confirmation" class="form-field text-center" type="password" name="password_confirmation" title="Confirm Password" placeholder="Confirm Password" sl-validation="required, equalTo[#password]">
+			            </div>
+			            <div class="form-group">
 			            <button type="submit" disabled class="btn btn-primary" title="Reset Password"> Reset Password </button>
+			            </div>
 			        </div>
 			    </form>
+			    </div>
 			</div>
             <div class="bottom-image">
                 <img src="'. $attr['bottom-image-src'] .'" alt="">
