@@ -11,7 +11,7 @@
 	 */
 	if ( $('.stellar-signup-page').length || $('.stellar-reset-password-page').length || $('.stellar-forgot-password-page').length ) {
 		console.debug('wow');
-		$('#main').attr('style', 'background-color: #000 !important; padding: 0;');
+		$('#main').attr('style', 'background-color: #000 !important; padding-top: 0; padding-bottom: 0;');
 
 		// $('#main').css('background-color: #000 !important;');
 	}

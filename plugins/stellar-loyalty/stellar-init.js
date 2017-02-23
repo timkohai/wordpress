@@ -27,7 +27,6 @@ window.stellarEnvironments = {
     }
 };
 
-
 var stellar_default_settings = {
     static_page_path: '',
     landing_page: 'home.html', // s3 static home page
@@ -47,14 +46,18 @@ function memberProfileFields() {
                 rules: {  name: 'rules', type: 'sl-validation', required: true } },  
             { attrib: "gender", source: "profile", label: "Gender: {{value}}", type: 'dropdown' }, 
             { attrib: "birthdate", source: "profile", label: "Birth Date: {{value}}", type: 'text', format: "localdate" }, 
-            { attrib: "mobile_phone", source: "profile", label: "Mobile Number: {{value}}", type: 'text' }]
+            { attrib: "mobile_phone", source: "profile", label: "Mobile Number: {{value}}", type: 'text',
+                    rules: { name: 'rules', type: 'sl-validation', number: true }
+             }]
     });
 
     fields.push({ attrib: "address", source: "profile", label: "Address", editable: true,
         fields: [{ attrib: "mailing_street", source: "profile", label: "Street: {{value}}", type: 'text' }, 
         { attrib: "mailing_city", source: "profile", label: "City: {{value}}", type: 'text' }, 
         { attrib: "mailing_state", source: "profile", label: "State: {{value}}", type: 'text' }, 
-        { attrib: "mailing_postal_code", source: "profile", label: "Zip Code: {{value}}", type: 'text' }, 
+        { attrib: "mailing_postal_code", source: "profile", label: "Zip Code: {{value}}", type: 'text',
+            rules: { name: 'rules', type: 'sl-validation', number: true, maxLength: '5', minLength: '5' }
+        }, 
         { attrib: "mailing_country", source: "profile", label: "Country: {{value}}", type: 'dropdown', dataSource: 'countries' }]
     });
 
@@ -128,13 +131,12 @@ function punchcardsHandler(item) {
       body: body,
       callbacks: {
         open: function() {
-            var elem = $j.magnificPopup.instance.content.find('.punchcard-circle-canvas')[0]
+            var elem = $.magnificPopup.instance.content.find('.punchcard-circle-canvas')[0]
             punchcardProgressBar(elem);
         }
       }
     });
 }
-
 
 function newsfeedTemplate(item) {
     var static_avatar = "./static/images/default_avatar.jpg",
@@ -241,7 +243,13 @@ function activatedTemplate(data) {
 }
 
 function couponsCustomHandler(data) {
-    var clip = !data.is_clipped ? 'plus' : 'minus';
+    var clipIcon = !data.is_clipped ? 'plus' : 'minus';
+    var clipClass = !data.is_clipped ? 'clip' : 'unclip';
+    var expiration = '';
+
+    if( data.end_date ) {
+        expiration = '<div class="expiration"><span class="expiration-text">Expires: '+Stellar.ui.formatters.slashFormat(data.end_date)+'</span></div>';
+    }
     var tmpl = '<div class="row">' +
             '<div class="coupon-image col-md-4 col-md-offset-4">' +
             '<img src="' + data.image_url + '">' +
@@ -249,10 +257,10 @@ function couponsCustomHandler(data) {
             '<div style="clear:both;"></div>' +
             '<div class="coupon-content">' +
             '<p class="item-description sl-chalet sl-dark-blue">' + data.heading + '</p>' +
-            '<p class="sl-brandon sl-mid-blue sl-medium">' + data.body + '</p>' +
-            '<p class="sl-chalet sl-black">' + data.details + '</p>' +
-            '</div><div>' +
-            '<div class="clip-item" data-element-type="offer" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clip+'"></spa></div>' +
+            '</div class="item-expiration">'+expiration+'<div>' +
+            '<p class="sl-brandon sl-mid-blue sl-medium item-body">' + data.body + '</p>' +
+            '<p class="sl-chalet sl-black item-details">' + data.details + '</p>' +
+            '<div class="clip-item '+ clipClass +'" data-element-type="offer" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clipIcon+'"></spa></div>' +
             '</div>';
 
     Stellar.ui.openPopup({
@@ -265,7 +273,7 @@ function couponsCustomHandler(data) {
 
 function couponsEarnedCustomHandler(data) {
     var offer = data.offer,
-        clip = (data.processing_status == "pending") ? 'plus' : 'minus';
+        clipIcon = (data.processing_status == "pending") ? 'plus' : 'minus';
         clipClass = (data.processing_status == "pending") ? 'clip' : 'unclip';
     // var clipText = (data.processing_status == "pending") ? '+' : '-';
     var tmpl = '<div class="row">' +
@@ -278,7 +286,7 @@ function couponsEarnedCustomHandler(data) {
             '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
             '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
             '</div><div>' +
-            '<div class="clip-item '+clipClass+'" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clip+'"></spa></div>' +
+            '<div class="clip-item '+clipClass+'" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clipIcon+'"></spa></div>' +
             '</div>';
 
     Stellar.ui.openPopup({
@@ -290,7 +298,8 @@ function couponsEarnedCustomHandler(data) {
 
 function couponsClipCustomHandler(data) {
     var offer = data.offer,
-        clip = (data.processing_status == "pending") ? 'plus' : 'minus';
+        clipICon = (data.processing_status == "pending") ? 'plus' : 'minus',
+        clipClass = (data.processing_status == "pending") ? 'clip' : 'unclip';
 
     if( offer.end_date ) {
         var date1 = new Date(offer.end_date); 
@@ -318,7 +327,7 @@ function couponsClipCustomHandler(data) {
             '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
             '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
             '<div class="expiration">'+expiration+'</div>'+
-            '<div class="clip-item" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clip+'"></spa></div>' +
+            '<div class="clip-item '+clipClass+'" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clipICon+'"></spa></div>' +
             '</div>';
 
     Stellar.ui.openPopup({
@@ -330,13 +339,19 @@ function couponsClipCustomHandler(data) {
 
 function clippedTemplate(data) {
     jQuery('.sl-empty-clipped').hide();
-    var offer = data.offer,
+    var offer = data.offer, expiration = '';
+
+        if (offer.end_date) {
+            expiration = '<div class="item-expiration"><span class="expiration-text">Expires: '+Stellar.ui.formatters.slashFormat(offer.end_date)+'</span></div>';
+        }
+
         tmpl = '<div class="row coupon-item stl_content">' +
         '<div class="coupon-image col-lg-3 col-md-3 col-sm-3 col-xs-3">' +
         '<img src="' + offer.image_url + '">' +
         '</div>' +
         '<div class="coupon-content col-lg-7 col-md-7 col-sm-7 col-xs-7">' +
         '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.heading + '</p>' +
+        '<p>'+expiration+'<p>'+
         '<p class="item-description sl-chalet sl-dark-blue">' + offer.subheading + '</p>' +
         '<p class="sl-brandon sl-mid-blue sl-medium">' + offer.body + '</p>' +
         '<p class="sl-chalet sl-black">' + offer.details + '</p>' +
@@ -463,17 +478,22 @@ function rewardResponseTemplate(item) {
 
 window.runStellar = function() {
     window.stellarConfig.allowCrossDomain = true;
-    $rs = jQuery.noConflict();
 
-    $rs('.stellar-nav-icon').on('click keypress', function() {
-        jQuery('.sl-navigation').slideToggle();
+    $j = jQuery.noConflict(); // fix jquery conflict;
+
+    if (document.querySelector('#redirect_to_forgot_password')) {
+        var redirect_path = config.hostname + '/forgot_password.html';
+        console.log ("redirecting to:", redirect_path);
+        window.location.href = redirect_path;
+    }
+
+    $j('.stellar-nav-icon').on('click keypress', function() {
+        $j('.sl-navigation').slideToggle();
     });
 };
 
 window.stellarReady = function () {
     // jQuery no conflict
-    $j = jQuery.noConflict();
-
 
     $j('.logout-link').on('click', function(event) {
         event.stopPropagation();
@@ -636,7 +656,7 @@ window.stellarReady = function () {
     Stellar.events.bind('auth.signup', function () { setPath(homePage); });
 
     Stellar.events.bind('member.connected', function () {
-        if (window.location.pathname === signupPage) { setPath(homePage); }
+        if (window.location.pathname.indexOf(signupPage) !== -1) { setPath(homePage); }
     });
 
     Stellar.events.bind('contentTokens.loaded', function () {
@@ -647,8 +667,8 @@ window.stellarReady = function () {
             punchcardProgressBar(elem, {
                 percent: percentage,
                 innerR: 56,
-                colorStart: '#e0fcff',
-                colorEnd: '#A0DADF'
+                colorStart: '#a0dadf',
+                colorEnd: '#ebf7f5'
             });
             $j('.stl_token_points').text(points);
         }
@@ -710,6 +730,9 @@ window.stellarReady = function () {
         e.preventDefault();
     });
 
+
+    $j('.stellar-wrapper').fadeIn('slow');
+
 }; // end of stellarReady
 
 function punchcardProgressBar(elem, options) {
@@ -719,8 +742,8 @@ function punchcardProgressBar(elem, options) {
         element: elem,
         innerR: options.innerR || 55,
         outerR: 70,
-        colorStart: options.colorStart || '#e0fcff',
-        colorEnd: options.colorEnd || '#A0DADF',
+        colorStart: options.colorStart || '#a0dadf',
+        colorEnd: options.colorEnd || '#222944',
         fillColor: '#fff',
         percentage: 0,
         duration: options.duration || 600
@@ -730,15 +753,15 @@ function punchcardProgressBar(elem, options) {
 
 function checkClipCoupon(elem, e, id) {
     // check if clipped or not
-    var clip = $j(elem).hasClass('clip') ? true : false;
+    var clip = jQuery(elem).hasClass('clip');
 
-    $j(elem).removeClass('unclip clip'); 
-    $j(elem).addClass('stellar-loader');
-    $j(elem).html('');
-    var isCoupon = $j(elem).data('element-type') ? true : false;
+    jQuery(elem).removeClass('unclip clip'); 
+    jQuery(elem).addClass('stellar-loader');
+    jQuery(elem).html('');
+    var isCoupon = jQuery(elem).data('element-type') ? true : false;
     if(isCoupon) {
-        $j(elem).removeClass('stellar-loader');
-        $j('<span class="fa fa-spin fa-spinner"></span>').appendTo($(elem));
+        jQuery(elem).removeClass('stellar-loader');
+        jQuery('<span class="fa fa-spin fa-spinner"></span>').appendTo(jQuery(elem));
     }
     Stellar.api.callClipItem({
         id: id,
@@ -746,7 +769,7 @@ function checkClipCoupon(elem, e, id) {
         endpoint: isCoupon ? 'offers' : 'offers/responses'
     }, function (response) {
         setTimeout(function() {
-            $j('.mfp-close.stellar-btn-close').trigger('click');
+            jQuery('.mfp-close.stellar-btn-close').trigger('click');
         }, 1000);
         limitResponse(response);
     });
@@ -787,9 +810,9 @@ function checkClipCoupon(elem, e, id) {
 
         successCallback = successCallback || function () {};
         if (js.readyState) {
-            el.onreadystatechange = function () {
-                if (el.readyState == 'loaded' || el.readyState == 'complete') {
-                    el.onreadystatechange = null;
+            js.onreadystatechange = function () {
+                if (js.readyState == 'loaded' || js.readyState == 'complete') {
+                    js.onreadystatechange = null;
                     successCallback();
                 }
             }
