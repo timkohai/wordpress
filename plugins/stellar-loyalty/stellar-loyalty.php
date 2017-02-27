@@ -14,32 +14,29 @@ Author URI: http://stellarloyalty.com
 // Constants
 define( 'STELLAR__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-// For Admin Settings
 require_once( STELLAR__PLUGIN_DIR . 'admin/stellar-admin-config.php' );
-// Stellar Elements Shortcodes
 require_once( STELLAR__PLUGIN_DIR . 'stellar-elements/stellar-shortcodes.php' );
 
-$stellar_loyalty_settings = get_option( 'stellar_settings' );
-$stellar_init_js = $stellar_loyalty_settings['stellar_init_path'];
-// $stellar_init_js = plugins_url( 'stellar-init.js', __FILE__ );
- 
-// wordpress register function for styles and scripts
-wp_register_style( 'stellar-plum-style', $stellar_loyalty_settings['static_page_path'] . 'css/custom.css', array() );
-wp_register_script( 'get-stellar-js', plugins_url( 'js/stellar-loyalty.js', __FILE__ ), array(), '1.0.2', true );
-wp_register_script( 'stellar-progressbar-js', $stellar_loyalty_settings['static_page_path'] . 'js/doughnutprogressbar.min.js', array());
+function stellar_loyalty_enqueue_scripts() {
+	$settings = get_option( 'stellar_settings' );
+	$stellar_init_js = plugins_url( 'stellar-init.js', __FILE__ );
+	wp_register_style( 'stellar-plum-style', $settings['static_page_path'] . 'css/custom.css', array() );
+	// wp_register_script( 'stellar-plum-script', plugins_url( 'js/stellar-loyalty.js', __FILE__ ), array() );
+	wp_register_script( 'stellar-progressbar-js', $settings['static_page_path'] . 'js/doughnutprogressbar.min.js', array());
 
-// Stellar Init
-wp_register_script( 'stellar-plum-init', $stellar_init_js , array());
+	wp_register_script( 'stellar-init', $settings['stellar_init_path'] , array());	
+	// wp_register_script( 'stellar-init', $stellar_init_js , array());	
+}
+add_action( 'init', 'stellar_loyalty_enqueue_scripts' );
 
 // Enqueue stellar styles and scripts 
 function load_stellar_assets() {
 	wp_enqueue_style( 'stellar-plum-style' );
-	wp_enqueue_style( 'get-stellar-js' );
+	wp_enqueue_script( 'stellar-plum-script' );
 	wp_enqueue_script( 'stellar-progressbar-js' );
-	wp_enqueue_script( 'stellar-plum-init' );
+	wp_enqueue_script( 'stellar-init' );
 	
-
-	wp_localize_script('stellar-plum-init', 'wordpress_settings', array(
+	wp_localize_script('stellar-init', 'wordpress_settings', array(
 			'settings' => get_option( 'stellar_settings' )
 		)
 	);
@@ -47,7 +44,8 @@ function load_stellar_assets() {
 
 // if stellar element shortcode was used only in the page enqueu stellar-init.js
 function check_stellar_loyalty_shortcodes() {
-	global $post;
+	global $wp_query;
+	$post = $wp_query->get_queried_object();
 
 	$shortcodes_to_find = array(
 		'stellar_login',
@@ -61,29 +59,32 @@ function check_stellar_loyalty_shortcodes() {
 		'stellar_content_page'
 	);
 
+	$counter = 0;
 	foreach ($shortcodes_to_find as $shortcode) {
 		$new_shortcode = str_replace('_', '-', $shortcode);
 		if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, $new_shortcode) ) {
-			
-			// Stellar init
-			wp_enqueue_script( 'stellar-plum-init' );
-			wp_localize_script('stellar-plum-init', 'wordpress_settings', array(
-					'settings' => get_option( 'stellar_settings' )
-				)
-			);
+			$counter++;
 		}
+	}
+	if ($counter > 0) {
+		// Stellar init
+		wp_enqueue_script( 'stellar-init' );
+		wp_localize_script('stellar-init', 'wordpress_settings', array(
+				'settings' => get_option( 'stellar_settings' )
+			)
+		);
 	}
 	return false;
 }
-add_action( 'wp_enqueue_scripts', 'check_stellar_loyalty_shortcodes');
+add_action( 'wp', 'check_stellar_loyalty_shortcodes');
 
 // Shortcode for PlumMarket theme
 function stellar_shortcode_attributes($page, $attr) {
 	if ($page === 'signup' || $page === 'forgot_password' ) {
-		$stellar_loyalty_settings = get_option( 'stellar_settings' );
+		$settings = get_option( 'stellar_settings' );
 
-		$topImg = $stellar_loyalty_settings['static_page_path'] . 'images/login_bg_top.png';
-		$botImg = $stellar_loyalty_settings['static_page_path'] . 'images/login_bg_bot.png';
+		$topImg = $settings['static_page_path'] . 'images/login_bg_top.png';
+		$botImg = $settings['static_page_path'] . 'images/login_bg_bot.png';
 
 		$atts =	shortcode_atts( array(
 					'top-image-src' => $topImg,
@@ -100,32 +101,18 @@ function stellar_shortcode_attributes($page, $attr) {
 // Signup Page
 function rewards_signup_page($attr, $content) {
 	load_stellar_assets();
+
 	$attr = stellar_shortcode_attributes('signup', $attr);
 	$content = preg_replace('/<br class="nc".\/>/', '', $content);
-
+	$settings = get_option( 'stellar_settings' );
+	
 	return '<div class="stellar-wrapper stellar-signup-page" style="display: none">
         <div class="top-image">
             <img src="' . $attr['top-image-src'] .'" alt="">
         </div>
         <h1 class="stellar-login-header sl-brandon sl-white sl-xxlarge">'. $attr['heading'].'</h1>
         <div class="login-wrapper">
-            '. do_shortcode($content) .'
-        </div>
-        <div class="bottom-image">
-            <img src="'. $attr['bottom-image-src'] .'" alt="">
-        </div>
-        </div>';
-
-}
-add_shortcode('rewards-signup-page', 'rewards_signup_page');
-
-
-function stellar_login($attr, $content) {
-	$atts = shortcode_atts( array (
-			'forgot_password_url' => ''
-		), $attr);
-
-	return '<div class="stellar-login col-lg-12" data-forgot-password-url="'.$atts['forgot_password_url'].'" style="display: none;">
+			<div class="stellar-login col-lg-12" data-forgot-password-url="'.$settings['forgot_password_page'].'" style="display: none;">
 	            <form id="stellar-register-form">
 	                <div class="notifications">
 	                    <div class="stellar-signup-notification"></div>
@@ -143,19 +130,24 @@ function stellar_login($attr, $content) {
 	                    <input type="text" name="mobile_phone" class="form-field mobile_phone" title="Phone Number" sl-message-required="Please enter Phone Number!" sl-validation="required" placeholder="Phone Number">
 	                </div> 
 	                <div class="form-group">
-	                    <input class="form-field" type="password" name="password" title="Password" sl-message-required="Please enter Password!"sl-validation="required" placeholder="Password"/>
+	                    <input class="form-field" type="password" name="password" title="Password" sl-message-required="Please enter Password!" sl-validation="required" placeholder="Password"/>
 	                </div>
 	                <div class="form-group">
-	                    <input class="form-field" type="password" name="password_confirmation"title="Confirm Password"sl-message-required="Please enter Confirm Password!"sl-message-equalTo="Confirm Password doesn\'t match Password."sl-validation="required, equalTo[password]" placeholder="Confirm Password"/>
+	                    <input class="form-field" type="password" name="password_confirmation" title="Confirm Password" sl-message-required="Please enter Confirm Password!" sl-message-equalTo="Confirm Password doesn\'t match Password." sl-validation="required,equalTo[password]" placeholder="Confirm Password"/>
 	                </div>
 	                <button class="stellar-register-button">SIGN UP</button>
 	                <p>Already Have an account?</p>
 	                <button class="stellar-signin-button">SIGN IN</button>
 	            </form> 
-	        </div>';
-}
-add_shortcode('stellar-login', 'stellar_login');
+	        </div>
+        </div>
+        <div class="bottom-image">
+            <img src="'. $attr['bottom-image-src'] .'" alt="">
+        </div>
+        </div>';
 
+}
+add_shortcode('rewards-signup-page', 'rewards_signup_page');
 
 // Home Page
 function rewards_homepage($attr, $content) {
@@ -217,7 +209,7 @@ function rewards_reset_password_page($attr, $content) {
 
 	$attr = stellar_shortcode_attributes('forgot_password', $attr);
 
-	$stellar_loyalty_settings = get_option( 'stellar_settings' );
+	$settings = get_option( 'stellar_settings' );
 
 	return '<div class="stellar-wrapper stellar-reset-password-page" style="display:none">
             <div class="top-image">
@@ -232,9 +224,9 @@ function rewards_reset_password_page($attr, $content) {
 			        </div>
 			        <div class="success-message" style="display: none;">
 			            <p>
-			                <img src="'.$stellar_loyalty_settings['static_page_path'].'images/check.png" width="30" height="30" alt="">
+			                <img src="' . $settings['static_page_path'] . 'images/check.png" width="30" height="30" alt="">
                             <span> You have successfully verified your email address. </span> <br>
-                            <a href="'.$stellar_loyalty_settings['signup_page'].'" class="btn btn-primary">Return to Login</a>
+                            <a href="' . $settings['signup_page'] . '" class="btn btn-primary">Return to Login</a>
 			            </p>
 			        </div>
 			        <div class="form-group password">
@@ -277,12 +269,8 @@ add_shortcode('rewards-banner-header', 'rewards_top_banner');
 
 
 function rewards_welcome_sections($attr, $content) {
-	$atts = shortcode_atts( array(
-		'active' => '',
-		'home-src' => '/rewards-dashboard',
-		'profile-src' => '/rewards-profile',
-		'program-src' => '/rewards-program',
-		), $attr );
+	$atts = shortcode_atts( array( 'active' => '' ), $attr );
+	$settings = get_option( 'stellar_settings' );
 
 	$class['home'] = $atts['active'] == 'home' ? 'active' : '';
 	$class['profile'] = $atts['active'] == 'profile' ? 'active' : '';
@@ -295,9 +283,9 @@ function rewards_welcome_sections($attr, $content) {
 		         </div>
 		        <div class="sl-navigation">
 		            <ul class="stellar-menu">
-		                <li class="home-link main-link"><a class="'.$class['home'].'" href="'. $atts['home-src'] .'">Home</a></li>
-		                <li class="profile-link main-link"><a class="'.$class['profile'].'" href="'. $atts['profile-src'] .'">Profile</a></li>
-		                <li class="program-link main-link"><a class="'.$class['program'].'" href="'. $atts['program-src'] .'">Program</a></li>
+		                <li class="home-link main-link"><a class="'.$class['home'].'" href="'. $settings['landing_page'] .'">Home</a></li>
+		                <li class="profile-link main-link"><a class="'.$class['profile'].'" href="'. $settings['profile_page'] .'">Profile</a></li>
+		                <li class="program-link main-link"><a class="'.$class['program'].'" href="'. $settings['program_page'] .'">Program</a></li>
 		                <li class="help-link"><a href="mailto:guest.relations@plummarket.com">Help <i class="fa fa-question-circle"></i></a></li>
 		                <li class="logout-link"><a href="#">Logout</a></li>
 		            </ul>

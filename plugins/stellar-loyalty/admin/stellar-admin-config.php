@@ -24,6 +24,13 @@ function stellar_loyalty_settings_init() {
 		'stellar_settings_group'
 	);
 
+	add_settings_section( 
+		'stellar_loyalty_pages_section',
+		__( 'Rewards Pages', 'stellar_loyalty' ),
+		'stellar_loyalty_pages_section_callback',
+		'stellar_settings_group'
+	);
+
 	add_settings_field( 
 		'stellar_init_url', 
 		__( 'Path to stellar-init.js', 'stellar_loyalty' ), 
@@ -42,18 +49,54 @@ function stellar_loyalty_settings_init() {
 
 	add_settings_field( 
 		'stellar_landing_url', 
-		__( 'Rewards Page', 'stellar_loyalty' ), 
+		__( 'Home', 'stellar_loyalty' ), 
 		'stellar_field_landing_page_cb', 
 		'stellar_settings_group', 
-		'stellar_loyalty_section'
+		'stellar_loyalty_pages_section'
 	);
 
 	add_settings_field( 
 		'stellar_signup_url', 
-		__( 'Signup Page', 'stellar_loyalty' ), 
+		__( 'Signup', 'stellar_loyalty' ), 
 		'stellar_field_signup_page_cb', 
 		'stellar_settings_group', 
-		'stellar_loyalty_section'
+		'stellar_loyalty_pages_section'
+	);
+
+	add_settings_field( 
+		'stellar_profile_url', 
+		__( 'Profile', 'stellar_loyalty' ), 
+		'stellar_field_profile_page_cb', 
+		'stellar_settings_group', 
+		'stellar_loyalty_pages_section'
+	);
+	add_settings_field( 
+		'stellar_program_url', 
+		__( 'Program', 'stellar_loyalty' ), 
+		'stellar_field_program_page_cb', 
+		'stellar_settings_group', 
+		'stellar_loyalty_pages_section'
+	);
+	add_settings_field( 
+		'stellar_forgot_password_url', 
+		__( 'Forgot Password', 'stellar_loyalty' ), 
+		'stellar_field_forgot_password_page_cb', 
+		'stellar_settings_group', 
+		'stellar_loyalty_pages_section'
+	);
+	add_settings_field( 
+		'stellar_reset_password_url', 
+		__( 'Reset Password', 'stellar_loyalty' ), 
+		'stellar_field_reset_password_page_cb', 
+		'stellar_settings_group', 
+		'stellar_loyalty_pages_section'
+	);
+	add_settings_field( 
+		'stellar_unsubscribe_url', 
+		__( 'Unsubscribe', 'stellar_loyalty' ), 
+		'stellar_field_unsubscribe_page_cb', 
+		'stellar_settings_group', 
+		'stellar_loyalty_pages_section'
 	);
 }
  
@@ -69,57 +112,111 @@ function stellar_loyalty_section_callback( $args ) {
 	// echo __('<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde excepturi aliquam natus, hic odit non in mollitia ex pariatur quis delectus ullam ipsum laudantium provident, consectetur labore! Fugiat, dolor, numquam.</p>', 'stellar_loyalty' );
 	// echo esc_attr( $args['id'] );
 }
+
+function stellar_loyalty_pages_section_callback( $args ) {
+	// echo __('<p>Pages</p>', 'stellar_loyalty' );
+}
  
 function stellar_field_init_url_cb( $args ) {
 	// get the value of the setting we've registered with register_setting()
 	$options = get_option( 'stellar_settings' );
 	?>
-	<input type="text" name="stellar_settings[stellar_init_path]" 
+	<input type="text" class="regular-text code" name="stellar_settings[stellar_init_path]" 
 	value="<?php
 	if ( isset( $options['stellar_init_path'] ) ) {
 		echo $options['stellar_init_path']; 
 	} ?>" style="width: 100%;" />
-	<p class="description">This is located in Stellar admin console under static files</p>
+	<!-- <p class="description">This is located in Stellar admin console under static files</p> -->
  	<?php
 }
 
 function stellar_field_static_url_cb( $args ) {
 	$options = get_option( 'stellar_settings' );
 	?>
-	<input type="text" name="stellar_settings[static_page_path]" 
+	<input type="text" class="regular-text code" name="stellar_settings[static_page_path]" 
 	value="<?php
 	if ( isset( $options['static_page_path'] ) ) {
 		echo $options['static_page_path']; 
-	} ?>" style="width: 100%;" />
-	<p class="description">Stellar Static Page S3</p>
+	} ?>" />
  	<?php
 }
 
 function stellar_field_landing_page_cb( $args ) {
 	$options = get_option( 'stellar_settings' );
 	?>
-	<input type="text" name="stellar_settings[landing_page]" 
+	<input type="text" class="regular-text code" name="stellar_settings[landing_page]" 
 	value="<?php
 	if ( isset( $options['landing_page'] ) ) {
 		echo $options['landing_page']; 
-	} ?>" style="width: 100%;" />
-	<p class="description">Redirect Path to Rewards Page</p>
+	} ?>" />
  	<?php
 }
 
 function stellar_field_signup_page_cb( $args ) {
 	$options = get_option( 'stellar_settings' );
 	?>
-	<input type="text" name="stellar_settings[signup_page]" 
+	<input type="text" class="regular-text code" name="stellar_settings[signup_page]" 
 	value="<?php
 	if ( isset( $options['signup_page'] ) ) {
 		echo $options['signup_page']; 
-	} ?>" style="width: 100%;" />
-	<p class="description">Redirect Path to Signup Page</p>
+	} ?>" />
  	<?php
 }
 
+function stellar_field_profile_page_cb( $args ) {
+	$options = get_option( 'stellar_settings' );
+	?>
+	<input type="text" class="regular-text code" name="stellar_settings[profile_page]" 
+	value="<?php
+	if ( isset( $options['profile_page'] ) ) {
+		echo $options['profile_page']; 
+	} ?>" />
+ 	<?php
+}
 
+function stellar_field_program_page_cb( $args ) {
+	$options = get_option( 'stellar_settings' );
+	?>
+	<input type="text" class="regular-text code" name="stellar_settings[program_page]" 
+	value="<?php
+	if ( isset( $options['program_page'] ) ) {
+		echo $options['program_page']; 
+	} ?>" />
+ 	<?php
+}
+
+function stellar_field_forgot_password_page_cb( $args ) {
+	$options = get_option( 'stellar_settings' );
+	?>
+	<input type="text" class="regular-text code" name="stellar_settings[forgot_password_page]" 
+	value="<?php
+	if ( isset( $options['forgot_password_page'] ) ) {
+		echo $options['forgot_password_page']; 
+	} ?>" />
+ 	<?php
+}
+
+function stellar_field_reset_password_page_cb( $args ) {
+	$options = get_option( 'stellar_settings' );
+	?>
+	<input type="text" class="regular-text code" name="stellar_settings[reset_password_page]" 
+	value="<?php
+	if ( isset( $options['reset_password_page'] ) ) {
+		echo $options['reset_password_page']; 
+	} ?>" />
+ 	<?php
+}
+
+function stellar_field_unsubscribe_page_cb( $args ) {
+	$options = get_option( 'stellar_settings' );
+	?>
+	<input type="text" class="regular-text code" name="stellar_settings[unsubscribe_page]" 
+	value="<?php
+	if ( isset( $options['unsubscribe_page'] ) ) {
+		echo $options['unsubscribe_page']; 
+	} ?>" />
+ 	<?php
+}
  
 function stellar_loyalty_settings_page() {
 	// check user capabilities

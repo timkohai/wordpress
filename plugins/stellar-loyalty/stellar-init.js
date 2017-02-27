@@ -9,8 +9,8 @@
 window.stellarEnvironments = {
     'custom': {
         'domains': ["www.plummarket.com", "plummarket.com", "dev.plummarket.com", "wordpress.dev"],
-        'config_url': 'https://s3.amazonaws.com/stellar-plum-et52jbwvll5pdiubfmzk/static_files/config-prod.js?1487222892'
-        // 'config_url': 'http://wordpress.dev/wp-content/plugins/stellar-loyalty/config-staging.js'
+        // 'config_url': 'https://s3.amazonaws.com/stellar-plum-et52jbwvll5pdiubfmzk/static_files/config-prod.js'
+        'config_url': 'http://wordpress.dev/wp-content/plugins/stellar-loyalty/config-prod.js'
     },
     'staging': {
         'domains': ["plum-staging-s3.demostellar.com"],
@@ -26,6 +26,7 @@ window.stellarEnvironments = {
         'config_url': 'config-qa.js'
     }
 };
+
 
 var stellar_default_settings = {
     static_page_path: '',
@@ -218,7 +219,7 @@ function couponsTemplate(data) {
 
 
 function activatedTemplate(data) {
-    if (data.processing_status == "cancelled") {
+    if (data.processing_status == "cancelled" || data.processing_status == "completed" ) {
         return;
     } else {
         jQuery('.sl-empty-activated').hide();
@@ -257,8 +258,9 @@ function couponsCustomHandler(data) {
             '<div style="clear:both;"></div>' +
             '<div class="coupon-content">' +
             '<p class="item-description sl-chalet sl-dark-blue">' + data.heading + '</p>' +
-            '</div class="item-expiration">'+expiration+'<div>' +
+            '<p class="item-subheading sl-chalet sl-dark-blue">' + data.subheading + '</p>' +
             '<p class="sl-brandon sl-mid-blue sl-medium item-body">' + data.body + '</p>' +
+            '<p class="item-expiration">'+expiration+'<p>' +
             '<p class="sl-chalet sl-black item-details">' + data.details + '</p>' +
             '<div class="clip-item '+ clipClass +'" data-element-type="offer" onclick="checkClipCoupon(this,event,'+data.id+')"><span class="fa fa-'+clipIcon+'"></spa></div>' +
             '</div>';
@@ -476,24 +478,24 @@ function rewardResponseTemplate(item) {
 // If you do not need custom code, just leave the function empty or comment it out. The default is:
 //     window.runStellar = function () { return false };
 
-window.runStellar = function() {
+window.runStellar = function(config) {
     window.stellarConfig.allowCrossDomain = true;
 
-    $j = jQuery.noConflict(); // fix jquery conflict;
+    if (typeof window.jQuery !== 'undefined') {
+        $j = jQuery.noConflict(); // fix jquery conflict;
+    }
 
     if (document.querySelector('#redirect_to_forgot_password')) {
-        var redirect_path = config.hostname + '/forgot_password.html';
+        var redirect_path = config.forgotPasswordPath;
         console.log ("redirecting to:", redirect_path);
         window.location.href = redirect_path;
     }
-
-    $j('.stellar-nav-icon').on('click keypress', function() {
-        $j('.sl-navigation').slideToggle();
-    });
+    return false;
 };
 
 window.stellarReady = function () {
     // jQuery no conflict
+    var app = {};
 
     $j('.logout-link').on('click', function(event) {
         event.stopPropagation();
@@ -595,11 +597,14 @@ window.stellarReady = function () {
                     f.find('input#password_confirmation').val('');
                     f.find('input#password_confirmation').attr('disabled');
 
+                    f.find('.form-reset-passowrd-container').hide();
+
                     f.find('.form-group.password').fadeOut();
                     // Hide Error Message
                     f.find('.error-message').html('').fadeOut();
                     // Show success message
                     f.find('.success-message').fadeIn();
+
                 }
                 else {
                     f.find('.error-message').show().html(r.responseJSON.message);
@@ -611,6 +616,8 @@ window.stellarReady = function () {
                 p = pageDetect || {},
                 d = p.isForgot ? self.label.txt_forgot_password : self.label.txt_reset_password,
                 _f = self.form, f;
+
+            if (!_f(d).length) { return; }
 
             // Remove disable attribute from button
             _f(d).find('.btn').removeAttr('disabled');
@@ -728,6 +735,10 @@ window.stellarReady = function () {
         }
         Stellar.ui.openPopup(opts);
         e.preventDefault();
+    });
+
+    $j('.stellar-nav-icon').on('click keypress', function() {
+        $j('.sl-navigation').slideToggle();
     });
 
 

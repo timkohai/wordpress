@@ -1,6 +1,7 @@
 <?php
 
 $stellar_elements = array(
+    'stellar_login',
     'stellar_challenges',
     'stellar_profile',
     'stellar_preferences',
@@ -33,14 +34,14 @@ function stellar_attributes($attr) {
         'respondable' => '',
         'mode' => '',
         'test' => '',
-        'id' => ''
+        'id' => '',
+        'forgot_password_url'
     ];
 
     /* Get shortcode attribute then merge html and stellar attribute */
     $shortcode_att = shortcode_atts( array_merge( $html_attributes, $stellar_attributes ), $attr );
 
     /* Create string of stellar attributes to be appended in stellar element */
-    // $shortcode_att['data-attribute'] = '';
     foreach ($shortcode_att as $key => $value) {
         if (array_key_exists($key, $stellar_attributes)) {
             if ( !empty($value) ) {
